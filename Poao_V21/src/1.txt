@@ -1,0 +1,4419 @@
+Totally Integrated
+Automation Portal
+
+
+
+Main [OB1]
+
+Main 
+
+
+
+            Main                           1                                                             OB                                     LAD
+
+            
+
+
+
+            "Main Program Sweep (Cy-                                                                                       
+
+            cle)"
+
+            0.1        ID
+
+                                                                                                         
+    Input
+                      Bool                                                                               Initial call of this OB
+        Initial_Call  Bool                                                                               =True, if remanent data are available
+        Remanence
+    Temp
+    Constant
+
+ 1
+
+                                              %M4.6         %DB27                                                  %M14.2
+                                       "1            "IEC_Timer_0_DB_                                        "1
+
+                                                "              13"                                                   "
+
+                                                              TON
+                                                             Time
+
+                                                             IN            Q
+                                           T#500MS PT                     ET T#0ms
+
+ 2+
+
+                                             %M14.2        %M7.7                                                  %M23.6
+                                                     "1"                                                     "1"
+                                       "1
+                                               "                                                                  %M23.7
+                                                                                                             "1"
+
+ 3                                            %M4.6                            %FC7
+ 4                                     "1                                                           ENO
+
+                                                "
+                                                                      EN
+
+                                                             %FC3
+
+                                       EN                                 ENO
+
+                                              %FC2
+
+                                       EN                                 ENO
+Totally Integrated
+Automation Portal
+
+                          %M14.2                              %FC9
+                    "1                                                             ENO
+
+                            "
+
+                                                   EN
+
+                          %M14.2                       %FC11
+
+                    "1
+                            "
+
+                                  EN                   ENO
+
+                          %M14.2                       %FC12
+                    "1
+
+                            "
+
+                                  EN                   ENO
+
+                          %M14.2                              %FC13
+                    "1                                                              ENO
+
+                            "
+
+                                                   EN
+
+                          %M14.2                              %FC14
+                    "1                                                              ENO
+
+                            "
+
+                                                   EN
+
+                          %M14.2                              %FC15
+                    "1                                                              ENO
+
+                            "
+
+                                                   EN
+
+                          %M14.2                       %FC16
+                    "1
+
+                            "
+
+                                  EN                   ENO
+
+                          %M14.2                       %FC17
+                    "1
+
+                            "
+
+                                  EN                   ENO
+
+                          %M14.2                              %FC18
+                    "1                                                              ENO
+
+                            "
+
+                                                   EN
+
+                          %M14.2                              %FC19
+                    "1                                                              ENO
+
+                            "
+
+                                                   EN
+
+                          %M14.2                              %FC20
+                    "1                                                              ENO
+
+                            "
+
+                                                   EN
+
+                          %M14.2                              %FC21
+                    "1                                                              ENO
+
+                            "
+
+                                                   EN
+
+                          %M14.2                       %FC22
+                    "1
+
+                            "
+
+                                  EN                   ENO
+Totally Integrated
+Automation Portal
+
+
+
+0  [FC7]
+
+0  
+
+
+
+  0                      7                                                 FC                           LAD
+
+  
+
+
+
+                                                                                                      
+
+  0.1                ID
+
+                                                                           
+    Input
+    Output          Void
+    InOut
+    Temp                                %M10.1
+    Constant                       ""
+    Return
+                                         %M4.6
+        0                        "1
+
+ 1                                         "
+
+                                                                                               %M8.2
+                                                                                        "1
+
+                                                                                                "
+                                                                                                   S
+
+                                                                                               %M2.6
+                                                                                        "1
+
+                                                                                                 "
+
+ 2
+
+                             %M8.2                   %M17.7                                    %M2.5
+                                                                                        "1"
+                      "1                        "11
+                              "                        "                                           S
+
+                                                                    %M5.3                      %M5.4
+                                                             "1                         "1
+
+                                                                        "                          "
+                                                                                                   S
+                                                                   %M2.7
+                                                             "1"                               %M2.7
+                                                                                        "1"
+
+                                                                                                   R
+
+                                                                                               %M3.7
+                                                                                        "1"
+
+                                                                                                   S
+
+ 3
+
+                             %M8.2                   %M17.7        %M2.5        %M23.4         %M5.4
+                                                             "1"           "1"          "1
+                      "1                        "11
+                              "                        "               R             S             "
+
+                                                                                                   R
+
+                                                                    %M5.4                      %M5.3
+                                                             "1                         "1
+
+                                                                        "                          "
+
+                                                                                                   S
+
+                                                                                               %M3.1
+                                                                                        "1
+
+                                                                                                "
+
+                                                                                                   S
+
+                                                                                               %M8.2
+                                                                                        "1
+
+                                                                                                "
+
+                                                                                                   R
+
+ 4
+   Totally Integrated         %M3.1        %M17.3        %M17.4         %M5.3
+   Automation Portal                 "1            "1            "1
+                       "1
+ 5                             "                "             "             "
+ 6                                                                          R
+
+ 7                                                                      %M3.7
+                                                                 "1"
+
+                                                                            R
+
+                                                                        %M4.6
+                                                                 "1
+
+                                                                           "
+                                                                            S
+
+                                                                       %M23.7
+                                                                 "1"
+
+                                                                            S
+
+                                                                       %M23.6
+                                                                 "1"
+
+                                                                            S
+
+                                                                        %M3.1
+                                                                 "1
+
+                                                                         "
+
+                                                                            R
+
+                                                                            MOVE
+
+                                                                        EN   ENO  %MW500
+                                                                 1 IN       OUT1  "1
+                                                                                  "
+
+                            %M255.2       %M17.5                                  %M23.4
+                                                                            "1"
+                       "1            "11
+                               "            "                                          S
+
+                                                          %M5.4                    %M5.3
+                                                   "1                       "1
+
+                                                              "                        "
+                                                                                       S
+                                                         %M2.7
+                                                   "1"                             %M2.7
+                                                                            "1"
+
+                                                                                       R
+
+                                                                                   %M3.7
+                                                                            "1"
+
+                                                                                       S
+
+                            %M255.2       %M17.5                                  %M23.4
+                                                                            "1"
+                       "1            "11
+                               "            "                                          R
+
+                                                          %M5.3                    %M2.5
+                                                   "1                       "1"
+
+                                                              "                        S
+
+                                                                                   %M5.3
+                                                                            "1
+
+                                                                                       "
+                                                                                       R
+
+                                                                                   %M5.4
+                                                                            "1
+
+                                                                                       "
+                                                                                       S
+
+                                                                                   %M3.2
+                                                                            "1
+
+                                                                                    "
+                                                                                       S
+
+                                                                                 %M255.2
+                                                                            "1
+
+                                                                                    "
+                                                                                       R
+Totally Integrated
+Automation Portal
+
+                           %M3.2        %M17.3        %M17.4         %M5.4
+                                  "1            "1            "1
+                    "1
+                            "                "             "             "
+                                                                         R
+
+                                                                     %M3.7
+                                                              "1"
+
+                                                                         R
+
+                                                                     %M4.6
+                                                              "1
+
+                                                                        "
+                                                                         S
+
+                                                                    %M23.7
+                                                              "1"
+
+                                                                         S
+
+                                                                    %M23.6
+                                                              "1"
+
+                                                                         S
+
+                                                                     %M3.2
+                                                              "1
+
+                                                                      "
+
+                                                                         R
+
+                                                                         MOVE
+
+                                                                     EN   ENO  %MW500
+                                                              6 IN       OUT1  "1
+                                                                               "
+Totally Integrated
+Automation Portal
+
+
+
+1  [FC9]
+
+1  
+
+
+
+  1                       9      FC    LAD
+
+  
+
+
+
+                                     
+                     ID
+  0.1
+
+                                 
+    Input
+    Output          Void
+    InOut
+    Temp
+    Constant
+    Return
+
+        1 
+
+ 1
+   Totally Integrated                         %M26.2
+   Automation Portal                    "1
+ 1 (1.1 / 3.1)
+                                                   a"
+                              %MW500               R
+                         "1
+                                              %M26.3
+                                    "   "1
+                                   ==
+                                   Int             b"
+                                    1              S
+
+                              %MW500          %M26.4
+                         "1             "1
+
+                                    "              c"
+                                   ==              S
+                                   Int
+                                    2         %M26.5
+                                        "1
+                              %MW500
+                         "1                        d"
+                                                   R
+                                    "
+                                   ==         %M26.6
+                                   Int  "1
+                                    3
+                                                   e"
+                                                   R
+
+                                              %M26.7
+                                        "1f
+
+                                                   "
+                                                   R
+
+                                               %M23.0
+                                        "1
+
+                                                   g"
+                                                   R
+
+                                              %M26.2
+                                        "1
+
+                                                   a"
+                                                   S
+
+                                              %M26.3
+                                        "1
+
+                                                   b"
+                                                   S
+
+                                              %M26.4
+                                        "1
+
+                                                   c"
+                                                   R
+
+                                              %M26.5
+                                        "1
+
+                                                   d"
+                                                   S
+
+                                              %M26.6
+                                        "1
+
+                                                   e"
+                                                   S
+
+                                              %M26.7
+                                        "1f
+
+                                                   "
+                                                   R
+
+                                               %M23.0
+                                        "1
+
+                                                   g"
+                                                   S
+
+                                              %M26.2
+                                        "1
+
+                                                   a"
+                                                   S
+
+                                              %M26.3
+                                        "1
+
+                                                   b"
+                                                   S
+
+                                              %M26.4
+                                        "1
+
+                                                   c"
+                                                   S
+
+                                              %M26.5
+                                        "1
+
+                                                   d"
+                                                   S
+
+                                              %M26.6
+                                        "1
+
+                                                   e"
+                                                   R
+
+                                                                 2.1 (  3 - 3)
+   Totally Integrated                                  1.1 (  3 - 2)
+   Automation Portal
+ 1 (2.1 / 3.1)                                %M26.7
+                                        "1f
+                              %MW500
+                         "1                        "
+                                                   R
+                                    "
+                                   ==          %M23.0
+                                   Int  "1
+                                    4
+                                                   g"
+                              %MW500               S
+                         "1
+                                              %M26.2
+                                    "   "1
+                                   ==
+                                   Int             a"
+                                    5              R
+
+                              %MW500          %M26.3
+                         "1             "1
+
+                                    "              b"
+                                   ==              S
+                                   Int
+                                    6         %M26.4
+                                        "1
+
+                                                   c"
+                                                   S
+
+                                              %M26.5
+                                        "1
+
+                                                   d"
+                                                   R
+
+                                              %M26.6
+                                        "1
+
+                                                   e"
+                                                   R
+
+                                              %M26.7
+                                        "1f
+
+                                                   "
+                                                   S
+
+                                               %M23.0
+                                        "1
+
+                                                   g"
+                                                   S
+
+                                              %M26.2
+                                        "1
+
+                                                   a"
+                                                   S
+
+                                              %M26.3
+                                        "1
+
+                                                   b"
+                                                   R
+
+                                              %M26.4
+                                        "1
+
+                                                   c"
+                                                   S
+
+                                              %M26.5
+                                        "1
+
+                                                   d"
+                                                   S
+
+                                              %M26.6
+                                        "1
+
+                                                   e"
+                                                   R
+
+                                              %M26.7
+                                        "1f
+
+                                                   "
+                                                   S
+
+                                               %M23.0
+                                        "1
+
+                                                   g"
+                                                   S
+
+                                              %M26.2
+                                        "1
+
+                                                   a"
+                                                   S
+
+                                              %M26.3
+                                        "1
+
+                                                   b"
+                                                   R
+
+                                              %M26.4
+                                        "1
+
+                                                   c"
+                                                   S
+
+                                                       3.1 (  3 - 4)
+   Totally Integrated
+   Automation Portal
+
+ 1 (3.1 / 3.1)
+
+                                      2.1 (  3 - 3)
+
+                             %M26.5
+                       "1
+
+                                  d"
+                                  S
+
+                             %M26.6
+                       "1
+
+                                  e"
+                                  S
+
+                             %M26.7
+                       "1f
+
+                                  "
+                                  S
+
+                              %M23.0
+                       "1
+
+                                  g"
+                                  S
+   Totally Integrated
+   Automation Portal
+
+ 2
+   Totally Integrated
+   Automation Portal
+
+ 2 (1.1 / 2.1)
+
+       %M2.0                                  %M23.4
+"1"                                      "1"
+
+       %M5.1
+"1
+
+        "
+
+      %M2.0         %M2.1         %M5.3         %M5.4       %MW500         %M6.1            %M5.1
+"1"           "1"          "1            "1            "1             "11"           "1
+
+                                      "             "             "            P             "
+
+                                                                 ==       %M10.2                S
+                                                                 Int        "0"
+
+                                                                  1
+
+                                                            %MW500         %M6.2
+                                                       "1             "12"
+
+                                                                  "            P
+
+                                                                 ==        %M10.3
+                                                                 Int        "4"
+
+                                                                  2
+
+                                                            %MW500         %M6.3
+                                                       "1             "13"
+
+                                                                  "            P
+
+                                                                 ==       %M10.4
+                                                                 Int        "5"
+
+                                                                  3
+
+                                                            %MW500         %M6.4
+                                                       "1             "14"
+
+                                                                  "            P
+
+                                                                 ==       %M10.5
+                                                                 Int        "6"
+
+                                                                  4
+
+                                                            %MW500         %M6.5
+                                                       "1             "15"
+
+                                                                  "            P
+
+                                                                 ==       %M10.6
+                                                                 Int        "7"
+
+                                                                  5
+
+      %M2.0                                     %M5.1
+"1"                                      "1
+
+          P                                      "
+     %M19.7                                         R
+
+       "9"                                      %M5.2
+                                         "1
+      %M2.1
+"1"                                              "
+                                                    R
+          P
+     %M11.0                                    %M2.5
+      "10"                               "1"
+
+      %M2.1
+"1"
+
+       %M5.2
+"1
+
+        "
+
+      %M2.0         %M2.1         %M5.3         %M5.4       %MW500         %M6.6            %M5.2
+"1"           "1"          "1            "1            "1             "12"           "1
+
+                                      "             "             "            P             "
+
+                                                                 ==        %M11.1               S
+                                                                 Int        "11"
+
+                                                                  2
+
+                                                            %MW500         %M6.7
+                                                       "1             "13"
+
+                                                                  "            P
+
+                                                                 ==       %M11.2
+                                                                 Int        "12"
+
+                                                                  3
+
+                                                            %MW500         %M7.0
+                                                       "1             "14"
+
+                                                                  "            P
+
+                                                                 ==        %M11.3
+                                                                 Int        "13"
+
+                                                                  4
+
+                                                            %MW500    %M7.1
+                                                       "1
+
+                                                                      2.1 (  3 - 7)
+   Totally Integrated
+   Automation Portal
+
+ 2 (2.1 / 2.1)
+
+                       "1             1.1 (  3 - 6)
+                                  "
+                                              %M7.1
+                                 ==     "15"
+                                 Int
+                                                  P
+                                  5          %M11.4
+                                              "14"
+
+                            %MW500         %M7.2
+                       "1             "16"
+
+                                  "            P
+
+                                 ==       %M11.5
+                                 Int        "15"
+
+                                  6
+Totally Integrated
+Automation Portal
+
+
+
+3  [FC11]
+
+3  
+
+
+
+              3                                11                                     FC                                      LAD
+
+              
+
+
+
+                                                                                                                
+
+              0.1    ID
+
+                                                                                      
+    Input
+    Output                        Void
+    InOut
+    Temp
+    Constant
+    Return
+
+        3 
+
+ 1
+
+                                             %MW500         %M4.0           %M5.3         %M5.4         %M5.0
+                                        "1             "11"          "1            "1            "1
+
+                                                   "                            "             "        "
+
+                                                  ==                                                        S
+                                                  Int
+
+                                                   1
+
+                                             %MW500         %M4.1
+                                        "1             "12"
+
+                                                   "
+
+                                                  ==
+                                                  Int
+
+                                                   2
+
+                                             %MW500         %M4.2
+                                        "1             "13"
+
+                                                   "
+
+                                                  ==
+                                                  Int
+
+                                                   3
+
+                                             %MW500         %M4.3
+                                        "1             "14"
+
+                                                   "
+
+                                                  ==
+                                                  Int
+
+                                                   4
+
+                                             %MW500         %M4.4
+                                        "1             "15"
+
+                                                   "
+
+                                                  ==
+                                                  Int
+
+                                                   5
+
+                                             %MW500           %M4.5
+                                        "1             "116
+
+                                                   "             "
+
+                                                  ==
+                                                  Int
+
+                                                   6
+
+ 2
+
+                           %M9.4       %M16.3       %M16.4       %M16.5       %M16.6       %M16.7       %M17.0         %M3.4
+                    "1            "11          "12          "13          "14          "15          "16          "1
+
+                             "             "            "            "            "            "            "            "
+Totally Integrated
+Automation Portal
+
+
+
+4  [FC12]
+
+4  
+
+
+
+              4           12                                                              FC             LAD
+
+              
+
+
+
+                                                                                                       
+
+              0.1    ID
+
+                                                                                               
+    Input
+    Output          Void
+    InOut
+    Temp
+    Constant
+    Return
+
+        4 
+
+ 1
+
+                                 %M5.3        %M17.3                                ADD
+                          "1            "1                                           Int
+
+                                     "             "
+
+                                                  P                            EN         ENO
+
+                                              %M14.6             %MW500                        %MW500
+                                               "40"   "1                                       "1
+                                                                                               "
+                                                                            "  IN1        OUT
+
+                                                                            1  IN2
+
+ 2
+
+                                 %M5.4        %M17.4                                SUB
+                          "1            "1                                          Int
+
+                                     "             "
+
+                                                  P                            EN         ENO
+
+                                              %M23.1             %MW500                        %MW500
+                                                "1"   "1                                       "1
+                                                                                               "
+                                                                            "  IN1        OUT
+
+                                                                            1  IN2
+Totally Integrated
+Automation Portal
+
+
+
+5  [FC13]
+
+5  
+
+
+
+  5                       13      FC    LAD
+
+  
+
+
+
+                                      
+                     ID
+  0.1
+
+                                  
+    Input
+    Output          Void
+    InOut
+    Temp
+    Constant
+    Return
+
+        5 
+
+ 1
+   Totally Integrated      %M20.3        %M24.0
+   Automation Portal   "1"         "1
+
+ 2                             P             "
+                           %M16.2             S
+                           "1"
+                                          %M6.1
+                           %M20.4   "11"
+                       "2"
+                                              S
+                               P
+                           %M18.1        %M24.1
+                           "2"     "2
+
+                           %M19.0            "
+                       "2"                    S
+
+                               P          %M6.2
+                           %M18.7   "12"
+                           "2"
+                                              S
+                           %M20.5
+                       "3"               %M24.5
+                                   "2
+                               P
+                           %M18.2            "
+                           "3"                S
+
+                           %M19.1         %M6.6
+                       "3"          "12"
+
+                               P              S
+                           %M21.0
+                           "3"           %M24.2
+                                   "3
+                           %M20.6
+                       "4"                   "
+                                              S
+                               P
+                           %M18.3         %M6.3
+                           "4"      "13"
+
+                           %M19.2             S
+                       "4"
+                                         %M24.6
+                               P   "3
+                           %M21.1
+                           "4"               "
+                                              S
+                           %M21.7
+                       "5"                %M6.7
+                                    "13"
+                               P
+                           %M18.4             S
+                           "5"
+                                         %M24.3
+                           %M19.3  "4
+                       "5"
+                                             "
+                               P              S
+                           %M21.2
+                           "5"            %M6.4
+                                    "14"
+                           %M19.4
+                       "6"                    S
+
+                               P         %M24.7
+                           %M21.3  "4
+                           "6"
+                                             "
+                                              S
+
+                                          %M7.0
+                                    "14"
+
+                                              S
+
+                                         %M24.4
+                                   "5
+
+                                             "
+                                              S
+
+                                          %M6.5
+                                    "15"
+
+                                              S
+
+                                         %M25.0
+                                   "5
+
+                                             "
+                                              S
+
+                                          %M7.1
+                                    "15"
+
+                                              S
+
+                                         %M25.1
+                                   "6
+
+                                             "
+                                              S
+
+                                          %M7.2
+                                    "16"
+
+                                              S
+   Totally Integrated         %M5.0                                  %MW500         %M7.2        %M25.1
+   Automation Portal                                            "1             "16"        "6
+                       "1
+ 3                           "                                             "                         "
+                                                                                                      R
+                                                                          ==
+                                                                          Int                     %M7.2
+                                                                                            "16"
+                                                                           6
+                                                                                                      R
+                              %M5.4         %M5.3        %M3.3
+                       "1            "1            "1"
+
+                                  "             "
+
+                              %M5.0                                  %MW500         %M7.1        %M25.0
+                       "1                                       "1             "15"        "5
+
+                             "                                             "                         "
+                                                                                                      R
+                                                                          ==
+                                                                          Int                     %M7.1
+                                                                           5                "15"
+
+                              %M5.4         %M5.3        %M3.3                                        R
+                       "1            "1            "1"
+
+                                  "             "
+
+                              %M5.0                                  %MW500         %M7.0        %M24.7
+                                                                "1             "14"        "4
+                       "1
+                             "                                             "                        "
+                                                                                                      R
+                                                                          ==
+                                                                          Int                     %M7.0
+                                                                                            "14"
+                                                                           4
+                                                                                                      R
+                              %M5.4         %M5.3        %M3.3
+                       "1            "1            "1"
+
+                                  "             "
+
+                              %M5.0                                  %MW500         %M6.7        %M24.6
+                                                                "1             "13"        "3
+                       "1
+                             "                                             "                        "
+                                                                                                      R
+                                                                          ==
+                                                                          Int                     %M6.7
+                                                                           3                "13"
+
+                              %M5.4         %M5.3        %M3.3                                        R
+                       "1            "1            "1"
+
+                                  "             "
+
+                              %M5.0                                  %MW500         %M6.6        %M24.5
+                       "1                                       "1             "12"        "2
+
+                             "                                             "                        "
+                                                                                                      R
+                                                                          ==
+                                                                          Int                     %M6.6
+                                                                                            "12"
+                                                                           2
+                                                                                                      R
+                              %M5.4         %M5.3        %M3.3
+                       "1            "1            "1"
+
+                                  "             "
+Totally Integrated
+Automation Portal
+
+                           %M5.3         %M5.4        %M3.3       %MW500         %M6.5        %M24.4
+                    "1            "1            "1"          "1             "15"        "5
+
+                               "             "                          "                         "
+                                                                                                   R
+                                                                       ==
+                                                                       Int                     %M6.5
+                                                                                         "15"
+                                                                        5
+                                                                                                   R
+                           %M5.0
+
+                    "1
+                          "
+
+                           %M5.3         %M5.4        %M3.3       %MW500         %M6.4        %M24.3
+                    "1            "1            "1"          "1             "14"        "4
+
+                               "             "                          "                        "
+                                                                                                   R
+                                                                       ==
+                                                                       Int                     %M6.4
+                                                                        4                "14"
+
+                           %M5.0                                                                   R
+
+                    "1
+                          "
+
+                           %M5.3         %M5.4        %M3.3       %MW500         %M6.3        %M24.2
+                    "1            "1            "1"          "1             "13"        "3
+
+                               "             "                          "                        "
+                                                                                                   R
+                                                                       ==
+                                                                       Int                     %M6.3
+                                                                                         "13"
+                                                                        3
+                                                                                                   R
+                           %M5.0
+
+                    "1
+                          "
+
+                           %M5.3         %M5.4        %M3.3       %MW500         %M6.2        %M24.1
+                    "1            "1            "1"          "1             "12"        "2
+
+                               "             "                          "                        "
+                                                                                                   R
+                                                                       ==
+                                                                       Int                     %M6.2
+                                                                        2                "12"
+
+                           %M5.0                                                                   R
+
+                    "1
+                          "
+
+                           %M5.3         %M5.4        %M3.3       %MW500         %M6.1        %M24.0
+                    "1            "1            "1"          "1             "11"        "1
+
+                               "             "                          "                        "
+                                                                                                   R
+                                                                       ==
+                                                                       Int                     %M6.1
+                                                                                         "11"
+                                                                        1
+                                                                                                   R
+                           %M5.0
+                    "1
+
+                          "
+Totally Integrated
+Automation Portal
+
+
+
+6  [FC14]
+
+6  
+
+
+
+    6                            14                                         FC                                            LAD
+                                                                                                               
+    
+
+
+
+                                                              
+
+    0.1              ID
+
+                                                                            
+    Input
+    Output          Void
+    InOut
+    Temp                                 %M3.5
+    Constant                     "1
+    Return
+                                           "
+        6 
+
+ 1
+
+                                                                                                 %M5.7
+                                                                                          "1
+
+                                                                                                     "
+                                                                                                     S
+
+                                                                                                 %M3.5
+                                                                                          "1
+
+                                                                                                   "
+                                                                                                     R
+
+                                                                                                 %M5.0
+                                                                                          "1
+
+                                                                                                "
+                                                                                                     R
+
+ 2
+
+                         %M17.1                                                    %M5.7
+                    "1"                                                     "1
+
+                                                                                       "
+
+                                                                                       R
+
+                                      %M23.5          %M20.7        %M19.5       %M16.0          %DB26             %M6.0
+                                 "1"            "1            "1            "1"           "IEC_Timer_0_DB_  "1
+
+                                                         "             "                            12"                "
+
+                                                                                                   TON
+                                                                                                  Time
+
+                                                                                          IN  Q             S
+
+                                                                            T#1.5s PT         ET T#0ms
+
+                         %M17.1        %M19.6         %M20.7       %M16.0        %M23.5          %M6.0
+                    "1"                         "1            "1"           "1"           "1
+                                 "1
+                                          "              "                                           "
+
+                                                                                                     S
+
+ 3                                      %M6.0         %M19.5                                     %M5.7
+ 4                               "1                                                       "1
+                                                "1
+                                            "            "                                           "
+                                                                                                     S
+                                                     %M16.0
+                                                "1"                                              %M6.0
+                                                                                          "1
+
+                                                                                                     "
+                                                                                                     R
+
+                                                      %M20.7
+
+                                                "1
+                                                         "
+
+                                      %M17.2                                                     %M6.0
+                                 "1"                                                      "1
+
+                                                                                                     "
+
+                                                                                                     R
+   Totally Integrated
+   Automation Portal
+
+ 5
+
+                              %M5.7                           %M4.7
+                       "1                              "1
+
+                                  "                             "
+                                                                  S
+                              %M6.0         %DB28
+                       "1            "IEC_Timer_0_DB_         %M4.7
+                                                       "1
+                                  "            14"
+                                                                "
+                                              TON                 R
+                                             Time
+
+                                         IN   Q
+                       T#150MS PT            ET T#0ms
+Totally Integrated
+Automation Portal
+
+
+
+7  [FC15]
+
+7  
+
+
+
+  7                      15                         FC                  LAD
+
+  
+
+
+
+                                                                      
+
+  0.1                ID
+
+                                                    
+    Input
+    Output          Void
+    InOut
+    Temp                                 %M6.1
+    Constant                       "11"
+    Return
+                                        %M25.2
+        7                         "11
+
+ 1                                        "
+
+                                         %M6.2                 %M4.0
+                                   "12"                  "11"
+
+                                        %M25.3                 %M4.1
+                                  "12                    "12"
+
+                                          "                    %M4.2
+                                                         "13"
+                                         %M6.6
+                                   "12"                        %M4.3
+                                                         "14"
+                                         %M6.3
+                                   "13"                        %M4.4
+                                                         "15"
+                                        %M25.4
+                                  "13                          %M4.5
+                                                        "116
+                                          "
+                                                                  "
+                                         %M6.7
+                                   "13"
+
+                                         %M6.4
+                                   "14"
+
+                                        %M25.5
+                                  "14
+
+                                          "
+
+                                         %M7.0
+                                   "14"
+
+                                         %M6.5
+                                   "15"
+
+                                        %M25.6
+                                  "15
+
+                                          "
+
+                                         %M7.1
+                                   "15"
+
+                                         %M7.2
+                                   "16"
+
+                                        %M25.7
+                                  "16
+
+                                          "
+Totally Integrated
+Automation Portal
+
+
+
+8  [FC16]
+
+8  
+
+
+
+              8           16                                        FC                           LAD
+
+              
+
+
+
+                                                                                               
+
+              0.1    ID
+
+                                                                    
+    Input
+    Output          Void
+    InOut
+    Temp
+    Constant
+    Return
+
+        8 
+
+ 1
+
+                               %M4.1         %MW500          %M2.1         %M5.4        %M2.0
+                          "12"          "1             "1"          "1            "1"
+
+                                                   "                           "
+
+                                                   <
+                                                  Int
+
+                                                   2
+
+                               %M4.2         %MW500
+                          "13"          "1
+
+                                                   "
+
+                                                   <
+                                                  Int
+
+                                                   3
+
+                               %M4.3         %MW500
+                          "14"          "1
+
+                                                   "
+
+                                                   <
+                                                  Int
+
+                                                   4
+
+                               %M4.4         %MW500
+                          "15"          "1
+
+                                                   "
+
+                                                   <
+                                                  Int
+
+                                                   5
+
+                                 %M4.5       %MW500
+                                        "1
+                          "116
+                                    "              "
+
+                                                   <
+                                                  Int
+
+                                                   6
+
+ 2
+Totally Integrated
+Automation Portal
+
+                         %M4.0       %MW500          %M2.0         %M5.3        %M2.1
+                    "11"        "1             "1"          "1            "1"
+
+                                           "                           "
+
+                                           >
+                                          Int
+
+                                           1
+
+                         %M4.1       %MW500
+                    "12"        "1
+
+                                           "
+
+                                           >
+                                          Int
+
+                                           2
+
+                         %M4.2       %MW500
+                    "13"        "1
+
+                                           "
+
+                                           >
+                                          Int
+
+                                           3
+
+                         %M4.3       %MW500
+                    "14"        "1
+
+                                           "
+
+                                           >
+                                          Int
+
+                                           4
+
+                         %M4.4       %MW500
+                    "15"        "1
+
+                                           "
+
+                                           >
+                                          Int
+
+                                           5
+Totally Integrated
+Automation Portal
+
+
+
+9  [FC17]
+
+9             9                                       17                                      FC                                LAD
+              
+                                                                                                                              
+              0.1
+                                           ID
+
+
+
+                                                                                              
+    Input
+    Output                                Void
+    InOut
+    Temp
+    Constant
+    Return
+
+        9 
+
+ 1
+
+                          %M2.0        %M16.1              %M3.4         %M5.4       %M16.0          %M4.7         %DB45               %M5.3
+                    "1"           "1"               "1            "1            "1"           "1            "IEC_Timer_0_DB_    "1
+
+                                                             "               "        %M3.7            "              29"                  "
+                                                                                "1"                                                        S
+                                                                                                                     TON
+                                                                                          R                         Time               %M3.7
+                                                                                                                                "1"
+                                                                                      %M2.7                     IN   Q
+                                                                                "1"           T#200MS PT            ET T#0ms               S
+
+                          %M12.3         %DB44                                            S                                           %M12.3
+                    "1            "IEC_Timer_0_DB_                                                                              "1
+
+                               "            28"                                                                                            "
+                                                                                                                                           S
+                                           TON
+                                          Time
+
+                                      IN     Q
+                    T#100MS PT              ET T#0ms
+
+                                                                                      %M12.3
+                                                                                "1
+
+                                                                                           "
+
+                                                                                           R
+
+                           %M5.3        %M3.3                                         %M12.6
+                    "1            "1"                                           "1
+
+                               "                                                           "
+
+                                                                                           S
+
+                          %M12.6                                                      %M2.7
+                    "1                                                          "1"
+
+                               "                                                          R
+
+                                                                                      %M3.7
+                                                                                "1"
+
+                                                                                          S
+
+                                                                                     %M12.4
+                                                                                "1"
+
+                                                                                          S
+
+                                                                                      %M3.3
+                                                                                "1"
+
+                                                                                          R
+
+                                                                                      %M12.6
+                                                                                "1
+
+                                                                                           "
+
+                                                                                           R
+
+ 2
+   Totally Integrated                                    %DB29                   %M5.5
+   Automation Portal                              "IEC_Timer_0_DB_        "11
+
+ 3                                                         15"                    "
+                                                                                     S
+                            %M12.4                        TON
+                       "1"                                Time                   %M5.5
+                                                                          "11
+                                                      IN         Q
+                                    T#150MS PT                  ET T#0ms          "
+                                                                                     R
+                                                         %DB30
+                                                                                 %M5.6
+                                                  "IEC_Timer_0_DB_        "12
+                                                           16"
+                                                                                  "
+                                                          TON                        S
+                                                          Time
+                                                                                 %M5.6
+                                                      IN         Q        "12
+                                    T#250MS PT                  ET T#0ms
+                                                                                  "
+                                                         %DB31                       R
+                                                  "IEC_Timer_0_DB_
+                                                                                %M10.7
+                                                            17"           "13
+
+                                                          TON                     "
+                                                          Time                       S
+
+                                                      IN         Q              %M12.5
+                                    T#300MS PT                  ET T#0ms  "1"
+
+                            %M12.5        %M17.3        %M17.4                       S
+                       "1"          "1            "1
+                                                                                %M12.4
+                                               "             "            "1"
+
+                                                            P                        R
+
+                                                        %M12.0                   %M5.3
+                                                         "18"             "1
+
+                                                                                     "
+                                                                                     R
+
+                                                                                 %M3.7
+                                                                          "1"
+
+                                                                                     R
+
+                                                                                 %M3.5
+                                                                          "1
+
+                                                                                   "
+                                                                                     S
+
+                                                                                %M10.7
+                                                                          "13
+
+                                                                                  "
+                                                                                     R
+
+                                                                                %M12.5
+                                                                          "1"
+
+                                                                                     R
+Totally Integrated
+Automation Portal
+
+                                               %M3.4         %M5.3                       %M4.7             %DB4                                %M5.4
+                                                      "1                          "1                        "T1"                        "1
+                                        "1
+          %M2.1               %M16.1              "              "       %M16.0            "               TON               P_TRIG                "
+    "1"                  "1"                                        "1"                                    Time                                    S
+                                                                                              T#200MS
+                                                                          %M3.7                        IN         Q          CLK     Q         %M3.7
+                                                                    "1"                                                                 "1"
+                                                                                                       PT         ET  T#0ms  %M15.3
+                                                                              R                                               "53"                 S
+                             %DB5
+          %M12.3              "T2"                                        %M2.7
+    "1                                                              "1"
+                             TON
+               "             Time                                             S
+
+                T#100MS  IN         Q                                                                                                         %M12.3
+                                                                                                                                        "1
+                         PT         ET  T#0ms
+                                                                                                                                                   "
+
+                                                                                                                                                   S
+
+                                                                          %M12.3
+                                                                    "1
+
+                                                                               "
+
+                                                                               R
+
+           %M5.4               %M3.3                                      %M12.6
+    "1                   "1"                                        "1
+
+               "                                                               "
+
+                                                                               S
+
+          %M12.6                                                          %M2.7
+    "1                                                              "1"
+
+               "                                                              R
+
+                                                                          %M3.7
+                                                                    "1"
+
+                                                                              S
+
+                                                                         %M12.4
+                                                                    "1"
+
+                                                                              S
+
+                                                                          %M3.3
+                                                                    "1"
+
+                                                                              R
+
+                                                                          %M12.6
+                                                                    "1
+
+                                                                               "
+
+                                                                               R
+
+ 4
+Totally Integrated
+Automation Portal
+
+                                                       %DB6                     %M5.5
+                                                        "T3"             "11
+
+                         %M12.4                        TON                       "
+                    "1"                                Time                         S
+
+                                               IN             Q                 %M5.5
+                                                                         "11
+                                 T#150MS       PT             ET  T#0ms
+                                                                                 "
+                                                       %DB8                         R
+                                               "IEC_Timer_0_DB_
+                                                                                %M5.6
+                                                         5"              "12
+
+                                                       TON                       "
+                                                       Time                         S
+
+                                                   IN          Q                %M5.6
+                                 T#250MS PT                   ET T#0ms   "12
+
+                                                       %DB8                      "
+                                               "IEC_Timer_0_DB_                     R
+
+                                                         5"                    %M10.7
+                                                                         "13
+                                                       TON
+                                                       Time                      "
+                                                                                    S
+                                                   IN          Q
+                                 T#300MS PT                   ET T#0ms         %M12.5
+                                                                         "1"
+                         %M12.5        %M17.4        %M17.3
+                    "1"          "1            "1                                   S
+
+                                            "             "                    %M12.4
+                                                                         "1"
+                                                         P
+                                                                                    R
+                                                     %M12.2
+                                                      "20"                      %M5.4
+                                                                         "1
+
+                                                                                    "
+                                                                                    R
+
+                                                                                %M3.7
+                                                                         "1"
+
+                                                                                    R
+
+                                                                                %M3.5
+                                                                         "1
+
+                                                                                  "
+                                                                                    S
+
+                                                                               %M10.7
+                                                                         "13
+
+                                                                                 "
+                                                                                    R
+
+                                                                               %M12.5
+                                                                         "1"
+
+                                                                                    R
+Totally Integrated
+Automation Portal
+
+
+
+10  [FC18]
+
+10  
+
+
+
+      10                  18                                         FC                          LAD
+
+      
+
+
+
+                                                                                               
+
+      0.1            ID
+
+                                                                     
+    Input
+    Output          Void
+    InOut
+    Temp
+    Constant
+    Return
+
+        10 
+
+ 1
+
+                                 %M5.3        %M17.3       %MW500          %M6.2        %M3.3
+                          "1            "1            "1             "12"         "1"
+
+                                     "             "             "        %M25.3            S
+                                                                     "12
+                                                                ==
+                                                                Int         "
+
+                                                                 2
+
+                                                           %MW500          %M6.3
+                                                      "1             "13"
+
+                                                                 "        %M25.4
+                                                                     "13
+                                                                ==
+                                                                Int         "
+                                                                 3
+
+                                                           %MW500          %M6.4
+                                                      "1             "14"
+
+                                                                 "        %M25.5
+                                                                     "14
+                                                                ==
+                                                                Int         "
+
+                                                                 4
+
+                                                           %MW500          %M6.5
+                                                      "1             "15"
+
+                                                                 "        %M25.6
+                                                                     "15
+                                                                ==
+                                                                Int         "
+                                                                 5
+
+                                                            %M2.0
+                                                      "1"
+
+                                                           %MW500         %M25.7
+                                                      "1
+                                                                     "16
+                                                                 "          "
+
+                                                                ==
+                                                                Int
+
+                                                                 6
+
+ 2
+
+bug  4  -------------
+  -----  4 
+Totally Integrated
+Automation Portal
+
+                           %M5.4        %M17.4       %MW500         %M25.2        %M3.3
+                    "1            "1            "1                          "1"
+                                                               "11
+                               "             "             "          "               S
+
+                                                          ==
+                                                          Int
+
+                                                           1
+
+                                                     %MW500          %M7.1
+                                                "1             "15"
+
+                                                           "        %M25.6
+                                                               "15
+                                                          ==
+                                                          Int         "
+
+                                                           5
+
+                                                     %MW500          %M7.0
+                                                "1             "14"
+
+                                                           "        %M25.5
+                                                               "14
+                                                          ==
+                                                          Int         "
+                                                           4
+
+                                                     %MW500          %M6.7
+                                                "1             "13"
+
+                                                           "        %M25.4
+                                                               "13
+                                                          ==
+                                                          Int         "
+
+                                                           3
+
+                                                     %MW500          %M6.6
+                                                "1             "12"
+
+                                                           "        %M25.3
+                                                               "12
+                                                          ==
+                                                          Int         "
+                                                           2
+
+                                                      %M2.1
+                                                "1"
+Totally Integrated
+Automation Portal
+
+
+
+11  [FC19]
+
+11  
+
+
+
+  11                      19      FC    LAD
+
+  
+
+
+
+                                      
+                     ID
+  0.1
+
+                                  
+    Input
+    Output          Void
+    InOut
+    Temp
+    Constant
+    Return
+
+        11 
+
+ 1
+Totally Integrated
+Automation Portal
+
+                         %M21.5                                     %M25.2
+                    "11                                        "11
+
+                             "                                        "
+                                                                         S
+                              P
+                                                                    %M25.2
+                         %M22.0                                "11
+                          "1"
+                                                                      "
+                         %MW500          %M17.3        %M17.4            R
+                    "1             "1            "1
+                                                                    %M25.3
+                               "              "             "  "12
+
+                              ==                                      "
+                              Int                                        S
+                               1
+                                                                    %M25.3
+                         %M21.6                                "12
+                    "12
+                                                                      "
+                             "                                           R
+
+                              P                                     %M25.4
+                                                               "13
+                         %M22.1
+                          "2"                                         "
+                                                                         S
+                         %MW500          %M17.3        %M17.4
+                    "1             "1            "1                 %M25.4
+                                                               "13
+                               "              "             "
+                                                                      "
+                              ==                                         R
+                              Int
+                                                                    %M25.5
+                               2                               "14
+
+                         %M22.7                                       "
+                    "13                                                  S
+
+                             "                                      %M25.5
+                                                               "14
+                              P
+                                                                      "
+                         %M22.2                                          R
+                          "3"
+                                                                    %M25.6
+                         %MW500          %M17.3        %M17.4  "15
+                    "1             "1            "1
+                                                                      "
+                               "              "             "            S
+
+                              ==                                    %M25.6
+                              Int                              "15
+                               3
+                                                                      "
+                         %M20.0                                          R
+                    "14
+                                                                    %M25.7
+                             "                                 "16
+
+                              P                                       "
+                                                                         S
+                         %M22.3
+                          "4"                                       %M25.7
+                                                               "16
+                         %MW500          %M17.3        %M17.4
+                    "1             "1            "1                   "
+                                                                         R
+                               "              "             "
+
+                              ==
+                              Int
+
+                               4
+
+                         %M20.1
+                    "15
+
+                             "
+
+                              P
+
+                         %M22.4
+                          "5"
+
+                         %MW500          %M17.3        %M17.4
+                    "1             "1            "1
+
+                               "              "             "
+
+                              ==
+                              Int
+                               5
+
+                         %M20.2
+                    "16
+
+                             "
+
+                              P
+
+                         %M22.5
+                          "6"
+
+                         %MW500          %M17.3        %M17.4
+                    "1             "1            "1
+
+                               "              "             "
+
+                              ==
+                              Int
+
+                               6
+Totally Integrated
+Automation Portal
+
+
+
+12  [FC20]
+
+12  
+
+
+
+      12                                          20                                           FC                                                  LAD
+
+      
+
+
+
+                                                                                                                         
+
+      0.1                  ID
+
+                                                                                               
+    Input
+    Output                            Void
+    InOut
+    Temp
+    Constant
+    Return
+
+        12 
+
+ 1
+
+                                                                                      %M4.5                                     %DB41
+                                                                               "116                                      "IEC_Timer_0_DB_
+
+                                                                                         "                                        25"
+
+                   %M4.0       %M4.1       %M4.2       %M4.3       %M4.4                             %M2.0        %M2.1            TON           %M7.7
+              "11"        "12"        "13"        "14"        "15"                             "1"          "1"                    Time    "1"
+
+                                                                                                                               IN         Q
+                                                                                                                 T#20S PT                ET T#0ms
+
+ 2
+
+                                                 %M16.0                                                 %M21.4
+                                            "1"                                                    "1"
+
+ 3
+
+                                                   %M6.0                      %DB42                       %M6.0
+                                            "1                         "IEC_Timer_0_DB_            "1
+
+                                                       "                        26"                           "
+                                                                                                              R
+                                                               %M17.2          TON
+                                                          "1"                  Time                       %M5.7
+                                                                                                   "1
+                                                                           IN         Q
+                                                              T#12s PT               ET T#0ms                 "
+                                                                                                              S
+                                                   %M5.7                      %DB43
+                                            "1                         "IEC_Timer_0_DB_                  %M23.5
+                                                                                                   "1"
+                                                       "                         27"
+                                                                                                              S
+                                                               %M17.1          TON
+                                                          "1"                  Time                       %M5.7
+                                                                                                   "1
+                                                                           IN         Q
+                                                              T#12s PT               ET T#0ms                 "
+                                                                                                              R
+
+                                                                                                          %M6.0
+                                                                                                   "1
+
+                                                                                                              "
+                                                                                                              S
+
+                                                                                                         %M23.5
+                                                                                                   "1"
+
+                                                                                                              S
+Totally Integrated
+Automation Portal
+
+
+
+13  [FC21]
+
+13  
+
+
+
+  13                      21                             FC                 LAD
+
+  
+
+
+
+                                                                          
+                     ID
+  0.1
+
+                                                         
+    Input
+    Output          Void
+    InOut
+    Temp
+    Constant
+    Return
+
+        13 
+
+ 1/ 
+
+                                 %M5.4       %MW500               %M25.2
+                          "1            "1                   "11
+
+                                     "             "                "
+                                                                       R
+                                                  ==
+                                                  Int             %M25.3
+                                                             "12
+                                                   1
+                                                                    "
+                                 %M5.3       %MW500                    R
+                          "1            "1
+                                                                  %M25.4
+                                     "             "         "13
+
+                                                  ==                "
+                                                  Int                  R
+
+                                                   6              %M25.5
+                                                             "14
+
+                                                                    "
+                                                                       R
+
+                                                                  %M25.6
+                                                             "15
+
+                                                                    "
+                                                                       R
+
+                                                                  %M25.7
+                                                             "16
+
+                                                                    "
+                                                                       R
+Totally Integrated
+Automation Portal
+
+
+
+14  [FC22]
+
+14            14         22                                    FC                 LAD
+              
+                                                                                
+              0.1
+                     ID
+
+
+
+                                                               
+    Input
+    Output          Void
+    InOut
+    Temp                                %M16.1
+    Constant                      "1"
+    Return
+
+        14 
+
+ 1
+
+                                                                         %M3.3
+                                                                   "1"
+
+                                                                             S
+
+                                                                        %M23.5
+                                                                   "1"
+
+ 2
+
+                           %M16.1                     %M3.3              %M2.7
+                      "1"                       "1"                "1"
+
+                                                                             R
+
+                                                                         %M3.7
+                                                                   "1"
+
+                                                                             R
+
+                                                                         %M3.3
+                                                                   "1"
+
+                                                                             R
+Totally Integrated
+Automation Portal
+
+
+
+ [FC2]
+
+ 
+
+
+
+                          2                FC                    LAD
+
+  
+
+
+
+                                                               
+
+  0.1                ID
+
+                                           
+    Input
+    Output          Bool
+    InOut           Void
+    Temp
+
+        
+    Constant
+    Return
+
+        
+
+ 1
+
+                               %M25.2           %DB14.DBX1.2
+                          "11                       "output".
+
+                                 "             "11
+                                                      "
+                               %M25.3
+                          "12                   %DB14.DBX1.3
+                                                    "output".
+                                 "
+                                               "12
+                               %M25.4                 "
+                          "13
+                                                %DB14.DBX1.4
+                                 "                  "output".
+
+                               %M25.5          "13
+                          "14                         "
+
+                                 "              %DB14.DBX1.5
+                                                    "output".
+                               %M25.6
+                          "15                  "14
+                                                      "
+                                 "
+                                                %DB14.DBX1.6
+                               %M25.7               "output".
+                          "16
+                                               "15
+                                 "                    "
+
+                                                %DB14.DBX1.7
+                                                    "output".
+
+                                               "16
+                                                      "
+
+ 2
+   Totally Integrated        %M24.0   %DB14.DBX0.0
+   Automation Portal   "1                  "output".
+
+ 3                               "   "1
+                                           "
+ 4                           %M24.1
+                       "2             %DB14.DBX0.1
+                                           "output".
+                                 "
+                                     "2
+                             %M24.2        "
+                       "3
+                                      %DB14.DBX0.2
+                                 "         "output".
+
+                             %M24.3  "3
+                       "4                  "
+
+                                 "    %DB14.DBX0.3
+                                           "output".
+                             %M24.4
+                       "5            "4
+                                           "
+                                 "
+                                      %DB14.DBX0.4
+                             %M24.5        "output".
+                       "2
+                                     "5
+                                 "         "
+
+                             %M24.6   %DB14.DBX0.5
+                       "3                  "output".
+
+                                 "   "2
+                                           "
+                             %M24.7
+                       "4             %DB14.DBX0.6
+                                           "output".
+                                 "
+                                     "3
+                             %M25.0        "
+                       "5
+                                      %DB14.DBX0.7
+                                 "         "output".
+
+                             %M25.1  "4
+                       "6                  "
+
+                                 "    %DB14.DBX1.0
+                                           "output".
+
+                                     "5
+                                           "
+
+                                      %DB14.DBX1.1
+                                           "output".
+
+                                     "6
+                                           "
+   Totally Integrated        %M26.2                                                   %DB14.DBX2.0
+   Automation Portal   "1                                                            "output"."1LE
+
+ 5                                a"                                                          Da"
+ 6
+                             %M26.3                                                   %DB14.DBX2.1
+ 7                     "1                                                            "output"."1LE
+ 8
+                                  b"                                                          Db"
+
+                             %M26.4                                                   %DB14.DBX2.2
+                       "1                                                            "output"."1LE
+
+                                  c"                                                          Dc"
+
+                             %M26.5                                                   %DB14.DBX2.3
+                       "1                                                            "output"."1LE
+
+                                  d"                                                          Dd"
+
+                             %M26.6                                                   %DB14.DBX2.4
+                       "1                                                            "output"."1LE
+
+                                  e"                                                          De"
+
+                             %M26.7                                                   %DB14.DBX2.5
+                       "1f                                                           "output"."1LE
+
+                                  "                                                           Df"
+
+                              %M23.0                                                  %DB14.DBX2.6
+                       "1                                                            "output"."1LE
+
+                                  g"                                                          Dg"
+
+                            %M23.4    %DB14.DBX3.0                                    %DB14.DBX2.7
+                       "1"                                                                "output".
+                                           "output".
+                                      "1"                                            "1"
+
+                             %M2.5    %DB14.DBX2.7                                    %DB14.DBX3.0
+                       "1"                                                                "output".
+                                           "output".
+                                      "1"                                            "1"
+
+                             %M23.6                                                   %DB14.DBX3.2
+                       "1"                                                                "output".
+
+                             %M23.7                                                  "1"
+                       "1"
+                                                                                      %DB14.DBX3.3
+                              %M2.6                                                       "output".
+                       "1
+                                                                                     "1"
+                                "
+                                                                                      %DB14.DBX3.5
+                             %M23.5                                                       "output".
+                       "1"
+                                                                                     "1
+                                                                                              "
+
+                                                                                      %DB14.DBX3.1
+                                                                                          "output".
+
+                                                                                     "1"
+
+                              %M5.3   %DB14.DBX3.7    %DB14.DBX4.2    %DB14.DBX4.3          %M4.7   %DB14.DBX3.6
+                       "1                                                            "1
+                                          "output".       "output".       "output".                     "output".
+                                  "  "1              "1              "1                        "   "1
+
+                                                "               "               "                             "
+
+                              %M5.4   %DB14.DBX3.6    %DB14.DBX4.2    %DB14.DBX4.3          %M4.7   %DB14.DBX3.7
+                       "1
+                                          "output".       "output".       "output".  "1                 "output".
+                                  "  "1              "1              "1                        "   "1
+
+                                                "               "               "                             "
+   Totally Integrated         %M5.7   %DB14.DBX3.6    %DB14.DBX3.7    %DB14.DBX4.3    %DB14.DBX4.2
+   Automation Portal   "1
+                                          "output".       "output".       "output".       "output".
+ 9                                "  "1              "1              "1              "1
+
+ 10                                             "               "               "               "
+ 11
+                              %M6.0   %DB14.DBX3.6    %DB14.DBX3.7    %DB14.DBX4.2    %DB14.DBX4.3
+                       "1
+                                          "output".       "output".       "output".       "output".
+                                  "  "1              "1              "1              "1
+
+                                                "               "               "               "
+
+                             %M2.7    %DB14.DBX4.1                                    %DB14.DBX4.0
+                       "1"                                                                "output".
+                                          "output".
+                                     "1                                              "1
+                                                                                                "
+                                                "
+                                                                                      %DB14.DBX4.1
+                             %M3.7    %DB14.DBX4.0                                        "output".
+                       "1"
+                                          "output".                                  "1
+                                     "1                                                         "
+
+                                                "                                     %DB14.DBX4.4
+                                                                                          "output".
+                             %M5.5
+                                                                                     "11
+                       "11                                                                    "
+                              "
+                                                                                      %DB14.DBX4.5
+                             %M5.6                                                        "output".
+                       "12
+                                                                                     "12
+                              "                                                               "
+
+                            %M10.7                                                    %DB14.DBX4.6
+                                                                                          "output".
+                       "13
+                              "                                                      "13
+                                                                                              "
+                              %M4.6
+                       "1                                                             %DB14.DBX4.7
+                                                                                          "output".
+                                "
+                                                                                       
+                             %M21.4
+                       "1"                                                            %DB14.DBX3.4
+                                                                                          "output".
+                                 P
+                                #                                                    "1"
+
+                              %M2.6                                                   %DB14.DBX3.5
+                       "1                                                                 "output".
+
+                                "                                                    "1
+                                                                                              "
+Totally Integrated
+Automation Portal
+
+
+
+ [FC3]
+
+ 
+
+
+
+                         3                              FC                 LAD
+
+  
+
+
+
+                                                                         
+
+  0.1                ID
+
+                                                        
+    Input
+    Output          Void
+    InOut
+    Temp                           %DB10.DBX2.2
+    Constant                             "IIIIII".
+    Return
+                                 "1
+                                          1"
+
+ 1                                 %DB10.DBX2.3
+                                         "IIIIII".
+                                                                 %M21.5
+                                 "1                         "11
+                                          2"
+                                                                     "
+                                   %DB10.DBX2.4
+                                         "IIIIII".               %M21.6
+                                                            "12
+                                 "1
+                                          3"                         "
+
+                                   %DB10.DBX2.5                  %M22.7
+                                         "IIIIII".          "13
+
+                                 "1                                  "
+                                          4"
+                                                                 %M20.0
+                                   %DB10.DBX2.6             "14
+                                         "IIIIII".
+                                                                     "
+                                 "1
+                                          5"                     %M20.1
+                                                            "15
+                                   %DB10.DBX2.7
+                                         "IIIIII".                   "
+
+                                 "1                              %M20.2
+                                          6"                "16
+
+                                   %DB10.DBX3.0                      "
+                                         "IIIIII".
+                                                                 %M20.2
+                                 "1                         "16
+                                          7"
+                                                                     "
+                                   %DB10.DBX3.1
+                                         "IIIIII".               %M20.2
+                                                            "16
+                                 "1
+                                          8"                         "
+
+                                   %DB10.DBX3.2                  %M20.2
+                                         "IIIIII".          "16
+
+                                 "1                                  "
+                                          9"
+                                                                 %M20.2
+                                   %DB10.DBX3.3             "16
+                                         "IIIIII".
+                                                                     "
+                                 "1
+                                         10"
+
+ 2
+Totally Integrated
+Automation Portal
+
+                     %DB13.DBX0.0        %M20.3
+                           "input".  "1"
+
+                    "1                   %M20.4
+                               "     "2"
+
+                     %DB13.DBX0.1        %M20.5
+                           "input".  "3"
+
+                    "2                   %M20.6
+                               "     "4"
+
+                     %DB13.DBX0.2        %M21.7
+                           "input".  "5"
+
+                    "3                   %M19.0
+                               "     "2"
+
+                     %DB13.DBX0.3        %M19.1
+                           "input".  "3"
+
+                    "4                   %M19.2
+                               "     "4"
+
+                     %DB13.DBX0.4        %M19.3
+                           "input".  "5"
+
+                    "5                   %M19.4
+                               "     "6"
+
+ 3
+
+                     %DB13.DBX0.5
+                           "input".
+
+                    "2
+                               "
+
+                     %DB13.DBX0.6
+                           "input".
+
+                    "3
+                               "
+
+                     %DB13.DBX0.7
+                           "input".
+
+                    "4
+                               "
+
+                     %DB13.DBX1.0
+                           "input".
+
+                    "5
+                               "
+
+                     %DB13.DBX1.1
+                           "input".
+
+                    "6
+                               "
+
+ 4
+   Totally Integrated   %DB13.DBX2.1                                                          %M19.6
+   Automation Portal
+                             "input".                                                   "1
+ 5+)                   "1                                                                        "
+
+ 6                              "
+
+                        %DB13.DBX2.0                                                          %M19.5
+
+                             "input".                                                   "1
+                       "1                                                                        "
+
+                                "
+
+                       %DB13.DBX2.2                                                           %M20.7
+                                                                                        "1
+                            "input".
+                       "1"                                                                       "
+
+                       %DB13.DBX2.4                                                          %M16.1
+                                                                                        "1"
+                            "input".
+                       "1"                                                                        S
+
+                                                    MOVE                      %MW720         %M16.0
+                                                                         "1             "1"
+                                                EN  ENO
+                                                                                  "               S
+
+                            %DB13.DBW6                           %MW720            >=
+                                                                 "1                Int
+                                    "input".                     "
+                       "1                                                         900
+
+                                             "             OUT1
+                                                IN
+
+                        %DB13.DBX2.5                                                           %M9.4
+                             "input".                                                   "1
+
+                       "1                                                                        "
+                                "
+                                                                                              %M16.3
+                        %DB13.DBX2.6                                                    "11
+                             "input".
+                                                                                                 "
+                       "11
+                               "                                                              %M16.4
+                                                                                        "12
+                        %DB13.DBX2.7
+                             "input".                                                            "
+
+                       "12                                                                    %M16.5
+                               "                                                        "13
+
+                        %DB13.DBX3.0                                                             "
+                             "input".
+                                                                                              %M16.6
+                       "13                                                              "14
+                               "
+                                                                                                 "
+                        %DB13.DBX3.1
+                             "input".                                                         %M16.7
+                                                                                        "15
+                       "14
+                               "                                                                 "
+
+                        %DB13.DBX3.2                                                          %M17.0
+                             "input".                                                   "16
+
+                       "15                                                                       "
+                               "
+
+                        %DB13.DBX3.3
+                             "input".
+
+                       "16
+                               "
+   Totally Integrated   %DB13.DBX3.4         %M17.1
+   Automation Portal         "input".  "1"
+
+ 7                     "1"                   %M17.2
+                                       "1"
+ 8                      %DB13.DBX3.5
+                             "input".        %M17.3
+                                       "1
+                       "1"
+                                                  "
+                        %DB13.DBX3.6
+                             "input".        %M17.4
+                                       "1
+                       "1
+                                  "               "
+
+                        %DB13.DBX3.7         %M17.5
+                             "input".  "11
+
+                       "1                      "
+                                  "
+                                             %M17.6
+                        %DB13.DBX4.0   "12
+                             "input".
+                                               "
+                       "11
+                               "             %M17.7
+                                       "11
+                        %DB13.DBX4.1
+                             "input".          "
+
+                       "12                   %M18.0
+                               "       "12
+
+                        %DB13.DBX4.2           "
+                             "input".
+                                             %M10.1
+                       "11              ""
+                               "
+
+                        %DB13.DBX4.3
+                             "input".
+
+                       "12
+                               "
+
+                        %DB13.DBX4.4
+                             "input".
+
+                         
+Totally Integrated
+Automation Portal
+
+
+
+output [DB14]
+
+output   output                  14                  DB                    DB
+         
+                                                                       
+         0.1               ID
+
+                                                       HMI               
+
+                                        False
+                                        False
+                                        False
+                                        False  HMI/OPC HMI/ 
+                                        False
+                                        False  UA/Web OPC 
+                                        False
+                                        False  API  UA/
+                                        False
+                                        False        Web
+                                        False
+                                        False        API
+                                        False
+                                        False        
+                                        False
+Static                                  False
+                                        False
+1  Bool                     0.0  false  False  True  True True  False
+                                        False  True  True True  False
+2  Bool                     0.1  false  False  True  True True  False
+                                        False  True  True True  False
+3  Bool                     0.2  false  False  True  True True  False
+                                        False  True  True True  False
+4  Bool                     0.3  false  False  True  True True  False
+                                        False  True  True True  False
+5  Bool                     0.4  false  False  True  True True  False
+                                        False  True  True True  False
+2  Bool                     0.5  false  False  True  True True  False
+                                        False  True  True True  False
+3  Bool                     0.6  false  False  True  True True  False
+                                        False  True  True True  False
+4  Bool                     0.7  false  False  True  True True  False
+                                        False  True  True True  False
+5  Bool                     1.0  false  False  True  True True  False
+                                        False  True  True True  False
+6  Bool                     1.1  false  False  True  True True  False
+                                        False  True  True True  False
+1  1                Bool    1.2  false  False  True  True True  False
+                                        False  True  True True  False
+1  2                Bool    1.3  false  False  True  True True  False
+                                               True  True True  False
+1  3                Bool    1.4  false         True  True True  False
+                                               True  True True  False
+1  4                Bool    1.5  false         True  True True  False
+                                               True  True True  False
+1  5                Bool    1.6  false         True  True True  False
+                                               True  True True  False
+1  6                Bool    1.7  false         True  True True  False
+                                               True  True True  False
+1  LEDa             Bool    2.0  false         True  True True  False
+                                               True  True True  False
+1  LEDb             Bool    2.1  false         True  True True  False
+                                               True  True True  False
+1  LEDc             Bool    2.2  false         True  True True  False
+                                               True  True True  False
+1  LEDd             Bool    2.3  false         True  True True  False
+                                               True  True True  False
+1  LEDe             Bool    2.4  false
+
+1  LEDf             Bool    2.5  false
+
+1  LEDg             Bool    2.6  false
+
+1                   Bool    2.7  false
+
+1                   Bool    3.0  false
+
+1                   Bool    3.1  false
+
+1                   Bool    3.2  false
+
+1                   Bool    3.3  false
+
+1                   Bool    3.4  false
+
+1                   Bool    3.5  false
+
+1                   Bool    3.6  false
+
+1                   Bool    3.7  false
+
+1                   Bool    4.0  false
+
+1                   Bool    4.1  false
+
+1                   Bool    4.2  false
+
+1                   Bool    4.3  false
+
+1  1                Bool    4.4  false
+
+1  2                Bool    4.5  false
+
+1  3                Bool    4.6  false
+
+                    Bool    4.7  false
+Totally Integrated
+Automation Portal
+
+
+
+input [DB13]
+
+input   input                       13               DB                    DB
+        
+                                                                       
+        0.1                ID
+
+                                                       HMI               
+
+                                        False
+                                        False
+                                        False
+                                        False  HMI/OPC HMI/ 
+                                        False
+                                        False  UA/Web OPC 
+                                        False
+                                        False  API  UA/
+                                        False
+                                        False        Web
+                                        False
+                                        False        API
+                                        False
+                                        False        
+                                        False
+Static              Bool    0.0  false  False  True  True True  False
+                    Bool                False  True  True True  False
+   1                Bool    0.1  false  False  True  True True  False
+   2                Bool                False  True  True True  False
+   3                Bool    0.2  false  False  True  True True  False
+   4                Bool                False  True  True True  False
+   5                Bool    0.3  false  False  True  True True  False
+   2                Bool                False  True  True True  False
+   3                Bool    0.4  false  False  True  True True  False
+   4                Bool                False  True  True True  False
+   5                Bool    0.5  false  False  True  True True  False
+   6                Bool                False  True  True True  False
+   1  1             Bool    0.6  false  False  True  True True  False
+   1  2             Bool                False  True  True True  False
+   1  3             Bool    0.7  false  False  True  True True  False
+   1  4             Bool                False  True  True True  False
+   1  5             Bool    1.0  false  False  True  True True  False
+   1  6             Bool                False  True  True True  False
+   1                Bool    1.1  false  False  True  True True  False
+   1                Bool                False  True  True True  False
+   1                Bool    1.2  false  False  True  True True  False
+   1                Bool                False  True  True True  False
+   1                Bool    1.3  false  False  True  True True  False
+   1                Bool                       True  True True  False
+   1  1             Bool    1.4  false         True  True True  False
+   1  2             Bool                       True  True True  False
+   1  3             Bool    1.5  false         True  True True  False
+   1  4             Bool                       True  True True  False
+   1  5             Bool    1.6  false         True  True True  False
+   1  6             Bool                       True  True True  False
+   1                Bool    1.7  false         True  True True  False
+   1                Bool                       True  True True  False
+   1                Bool    2.0  false         True  True True  False
+   1                Bool                       True  True True  False
+   1  1             Bool    2.1  false         True  True True  False
+   1  2             Bool                       True  True True  False
+   1  1             Bool    2.2  false         True  True True  False
+   1  2             Word                       True  True True  False
+                            2.3  false
+   1 
+                            2.4  false
+
+                            2.5  false
+
+                            2.6  false
+
+                            2.7  false
+
+                            3.0  false
+
+                            3.1  false
+
+                            3.2  false
+
+                            3.3  false
+
+                            3.4  false
+
+                            3.5  false
+
+                            3.6  false
+
+                            3.7  false
+
+                            4.0  false
+
+                            4.1  false
+
+                            4.2  false
+
+                            4.3  false
+
+                            4.4  1
+
+                            6.0  16#0
+Totally Integrated
+Automation Portal
+
+
+
+IIIIII [DB10]
+
+IIIIII         IIIIII               10                  DB                    DB
+               
+                                                                          
+               0.1            ID
+
+                                                          HMI               
+
+                                           False
+                                           False
+                                           False
+                                           False  HMI/OPC HMI/ 
+                                           False
+                                           False  UA/Web OPC 
+                                           False
+                                           False  API  UA/
+                                           False
+                                           False        Web
+                                           False
+                                           False        API
+                                           False
+                                           False        
+                                           False
+Static                                     False
+                                           False
+1                      Bool    0.0  false  False  True  True True  False
+                                           False  True  True True  False
+2                      Bool    0.1  false  False  True  True True  False
+                                           False  True  True True  False
+3                      Bool    0.2  false  False  True  True True  False
+                                           False  True  True True  False
+4                      Bool    0.3  false  False  True  True True  False
+                                           False  True  True True  False
+5                      Bool    0.4  false  False  True  True True  False
+                                           False  True  True True  False
+6                      Bool    0.5  false  False  True  True True  False
+                                           False  True  True True  False
+7                      Bool    0.6  false  False  True  True True  False
+                                           False  True  True True  False
+8                      Bool    0.7  false  False  True  True True  False
+                                           False  True  True True  False
+9                      Bool    1.0  false  False  True  True True  False
+                                           False  True  True True  False
+2                      Bool    1.1  false  False  True  True True  False
+                                           False  True  True True  False
+3                      Bool    1.2  false  False  True  True True  False
+                                           False  True  True True  False
+4                      Bool    1.3  false  False  True  True True  False
+                                           False  True  True True  False
+5                      Bool    1.4  false  False  True  True True  False
+                                           False  True  True True  False
+6                      Bool    1.5  false  False  True  True True  False
+                                           False  True  True True  False
+7                      Bool    1.6  false  False  True  True True  False
+                                           False  True  True True  False
+8                      Bool    1.7  false  False  True  True True  False
+                                           False  True  True True  False
+9                      Bool    2.0  false  False  True  True True  False
+                                           False  True  True True  False
+10                     Bool    2.1  false  False  True  True True  False
+                                           False  True  True True  False
+1  1                   Bool    2.2  false  False  True  True True  False
+                                           False  True  True True  False
+1  2                   Bool    2.3  false  False  True  True True  False
+                                           False  True  True True  False
+1  3                   Bool    2.4  false  False  True  True True  False
+                                           False  True  True True  False
+1  4                   Bool    2.5  false  False  True  True True  False
+                                                  True  True True  False
+1  5                   Bool    2.6  false         True  True True  False
+                                                  True  True True  False
+1  6                   Bool    2.7  false         True  True True  False
+                                                  True  True True  False
+1  7                   Bool    3.0  false         True  True True  False
+                                                  True  True True  False
+1  8                   Bool    3.1  false         True  True True  False
+                                                  True  True True  False
+1  9                   Bool    3.2  false         True  True True  False
+                                                  True  True True  False
+1  10                  Bool    3.3  false         True  True True  False
+                                                  True  True True  False
+1                      Bool    3.4  false         True  True True  False
+                                                  True  True True  False
+1                      Bool    3.5  false         True  True True  False
+                                                  True  True True  False
+1                      Bool    3.6  false
+
+1                      Bool    3.7  false
+
+1                      Bool    4.0  false
+
+1                      Bool    4.1  false
+
+1  1                   Bool    4.2  false
+
+1  2                   Bool    4.3  false
+
+1  3                   Bool    4.4  false
+
+1  4                   Bool    4.5  false
+
+1  5                   Bool    4.6  false
+
+1  6                   Bool    4.7  false
+
+1  7                   Bool    5.0  false
+
+1  8                   Bool    5.1  false
+
+1  9                   Bool    5.2  false
+
+1  10  Bool                    5.3  false
+
+1                      Bool    5.4  false
+
+1                      Bool    5.5  false
+
+1                      Bool    5.6  false
+
+1                      Bool    5.7  false
+
+1  1                   Bool    6.0  false
+
+1  2                   Bool    6.1  false
+
+1  1                   Bool    6.2  false
+
+1  2                   Bool    6.3  false
+
+2  1                   Bool    6.4  false
+
+2  2                   Bool    6.5  false
+
+2  3                   Bool    6.6  false
+
+2  4                   Bool    6.7  false
+
+2  5                   Bool    7.0  false
+
+2  6                   Bool    7.1  false
+
+2  7                   Bool    7.2  false
+
+2  8                   Bool    7.3  false
+   Totally Integrated                                    HMI               
+   Automation Portal
+                                          False
+                                          False
+                                          False
+                                          False  HMI/OPC HMI/ 
+                                          False
+                                          False  UA/Web OPC 
+                                          False
+                                          False  API  UA/
+                                          False
+                                          False        Web
+                                          False
+                                          False        API
+                                          False
+                                          False        
+                                          False
+2  9                   Bool  7.4   false  False  True  True True  False
+                             7.5   false  False
+2  10                  Bool  7.6   false  False  True  True True  False
+                             7.7   false  False
+2                      Bool  8.0   false  False  True  True True  False
+                             8.1   false  False
+2                      Bool  8.2   false  False  True  True True  False
+                             8.3   false  False
+2                      Bool  8.4   false  False  True  True True  False
+                             8.5   false  False
+2                      Bool  8.6   false  False  True  True True  False
+                             8.7   false  False
+2                      Bool  9.0   false  False  True  True True  False
+                             9.1   false  False
+2                      Bool  9.2   false  False  True  True True  False
+                             9.3   false  False
+2  1                   Bool  9.4   false  False  True  True True  False
+                             9.5   false  False
+2  2                   Bool  9.6   false  False  True  True True  False
+                             9.7   false  False
+2  3                   Bool  10.0  false  False  True  True True  False
+                             10.1  false  False
+2  4                   Bool  10.2  false  False  True  True True  False
+                             10.3  false  False
+2  5                   Bool  10.4  false  False  True  True True  False
+                             10.5  false  False
+2  6                   Bool  10.6  false  False  True  True True  False
+                             10.7  false  False
+2  7                   Bool  11.0  false  False  True  True True  False
+                             11.1  false  False
+2  8                   Bool  11.2  false  False  True  True True  False
+                             11.3  false  False
+2  9                   Bool  11.4  false  False  True  True True  False
+                             11.5  false  False
+2  10  Bool                  11.6  false  False  True  True True  False
+                             11.7  false  False
+2                      Bool  12.0  false  False  True  True True  False
+                             12.1  false  False
+2                      Bool  12.2  false  False  True  True True  False
+                             12.3  false  False
+2                      Bool  12.4  false  False  True  True True  False
+                             12.5  false  False
+2                      Bool  12.6  false  False  True  True True  False
+                             12.7  false  False
+2  1                   Bool  13.0  false  False  True  True True  False
+                             13.1  false  False
+2  2                   Bool  13.2  false         True  True True  False
+                             13.3  false
+2  1                   Bool  13.4  false         True  True True  False
+                             13.5  false
+2  2                   Bool  13.6  false         True  True True  False
+                             13.7  false
+3  1                   Bool  14.0  false         True  True True  False
+                             14.1  false
+3  2                   Bool  14.2  false         True  True True  False
+                             14.3  false
+3  3                   Bool  14.4  false         True  True True  False
+                             14.5  false
+3  4                   Bool  14.6  false         True  True True  False
+                             14.7  false
+3  5                   Bool  15.0  false         True  True True  False
+
+3  6                   Bool                      True  True True  False
+
+3  7                   Bool                      True  True True  False
+
+3  8                   Bool                      True  True True  False
+
+3  9                   Bool                      True  True True  False
+
+3  10                  Bool                      True  True True  False
+
+3                      Bool                      True  True True  False
+
+3                      Bool                      True  True True  False
+
+3                      Bool                      True  True True  False
+
+3                      Bool                      True  True True  False
+
+3                      Bool                      True  True True  False
+
+3                      Bool                      True  True True  False
+
+3  1                   Bool                      True  True True  False
+
+3  2                   Bool                      True  True True  False
+
+3  3                   Bool                      True  True True  False
+
+3  4                   Bool                      True  True True  False
+
+3  5                   Bool                      True  True True  False
+
+3  6                   Bool                      True  True True  False
+
+3  7                   Bool                      True  True True  False
+
+3  8                   Bool                      True  True True  False
+
+3  9                   Bool                      True  True True  False
+
+3  10  Bool                                      True  True True  False
+
+3                      Bool                      True  True True  False
+
+3                      Bool                      True  True True  False
+
+3                      Bool                      True  True True  False
+
+3                      Bool                      True  True True  False
+
+3  1                   Bool                      True  True True  False
+
+3  2                   Bool                      True  True True  False
+
+3  1                   Bool                      True  True True  False
+
+3  2                   Bool                      True  True True  False
+
+                       Bool                      True  True True  False
+Totally Integrated
+Automation Portal
+
+
+
+OOOOOO [DB11]
+
+OOOOOO   OOOOOO                  11                  DB                    DB
+         
+                                                                       
+         0.1               ID
+
+
+
+
+                                                       HMI               
+
+                                        False  HMI/OPC HMI/ 
+                                        False
+                                        False  UA/Web OPC 
+                                        False
+                                        False  API  UA/
+                                        False
+                                        False        Web
+                                        False
+                                        False        API
+                                        False
+                                        False        
+                                        False
+Static                                  False
+                                        False
+  1  Bool                   0.0  false  False  True  True True  False
+                                        False  True  True True  False
+  2  Bool                   0.1  false  False  True  True True  False
+                                        False  True  True True  False
+  3  Bool                   0.2  false  False  True  True True  False
+                                        False  True  True True  False
+  4  Bool                   0.3  false  False  True  True True  False
+                                        False  True  True True  False
+  5  Bool                   0.4  false  False  True  True True  False
+                                        False  True  True True  False
+  6  Bool                   0.5  false  False  True  True True  False
+                                        False  True  True True  False
+  7  Bool                   0.6  false  False  True  True True  False
+                                        False  True  True True  False
+  8  Bool                   0.7  false  False  True  True True  False
+                                        False  True  True True  False
+  9  Bool                   1.0  false  False  True  True True  False
+                                        False  True  True True  False
+  2  Bool                   1.1  false  False  True  True True  False
+                                        False  True  True True  False
+  3  Bool                   1.2  false  False  True  True True  False
+                                        False  True  True True  False
+  4  Bool                   1.3  false  False  True  True True  False
+                                        False  True  True True  False
+  5  Bool                   1.4  false  False  True  True True  False
+                                        False  True  True True  False
+  6  Bool                   1.5  false  False  True  True True  False
+                                        False  True  True True  False
+  7  Bool                   1.6  false  False  True  True True  False
+                                        False  True  True True  False
+  8  Bool                   1.7  false  False  True  True True  False
+                                        False  True  True True  False
+  9  Bool                   2.0  false  False  True  True True  False
+                                        False  True  True True  False
+  10  Bool                  2.1  false  False  True  True True  False
+                                        False  True  True True  False
+  1  1              Bool    2.2  false  False  True  True True  False
+                                        False  True  True True  False
+  1  2              Bool    2.3  false  False  True  True True  False
+                                        False  True  True True  False
+  1  3              Bool    2.4  false  False  True  True True  False
+                                        False  True  True True  False
+  1  4              Bool    2.5  false  False  True  True True  False
+                                        False  True  True True  False
+  1  5              Bool    2.6  false  False  True  True True  False
+                                        False  True  True True  False
+  1  6              Bool    2.7  false         True  True True  False
+                                               True  True True  False
+  1  7              Bool    3.0  false         True  True True  False
+                                               True  True True  False
+  1  8              Bool    3.1  false         True  True True  False
+                                               True  True True  False
+  1  9              Bool    3.2  false         True  True True  False
+                                               True  True True  False
+  1  10  Bool               3.3  false         True  True True  False
+                                               True  True True  False
+  1  LEDa           Bool    3.4  false         True  True True  False
+                                               True  True True  False
+  1  LEDb           Bool    3.5  false         True  True True  False
+                                               True  True True  False
+  1  LEDc           Bool    3.6  false
+
+  1  LEDd           Bool    3.7  false
+
+  1  LEDe           Bool    4.0  false
+
+  1  LEDf           Bool    4.1  false
+
+  1  LEDg           Bool    4.2  false
+
+  1  LEDh           Bool    4.3  false
+
+  1  LEDi           Bool    4.4  false
+
+  1  LEDj           Bool    4.5  false
+
+  1  LEDk           Bool    4.6  false
+
+  1  LEDl           Bool    4.7  false
+
+  1  LEDm           Bool    5.0  false
+
+  1  LEDn           Bool    5.1  false
+
+  1                 Bool    5.2  false
+
+  1                 Bool    5.3  false
+
+  1                 Bool    5.4  false
+
+  1                 Bool    5.5  false
+
+  1                 Bool    5.6  false
+
+  1                 Bool    5.7  false
+
+  1                 Bool    6.0  false
+
+  1                 Bool    6.1  false
+
+  1                 Bool    6.2  false
+
+  1                 Bool    6.3  false
+
+  1                 Bool    6.4  false
+
+  1                 Bool    6.5  false
+
+  1                 Bool    6.6  false
+
+  1  1              Bool    6.7  false
+
+  1  2              Bool    7.0  false
+
+  1  3              Bool    7.1  false
+
+  2  1              Bool    7.2  false
+
+  2  2              Bool    7.3  false
+   Totally Integrated                                    HMI               
+   Automation Portal
+                                          False
+                                          False
+                                          False
+                                          False  HMI/OPC HMI/ 
+                                          False
+                                          False  UA/Web OPC 
+                                          False
+                                          False  API  UA/
+                                          False
+                                          False        Web
+                                          False
+                                          False        API
+                                          False
+                                          False        
+                                          False
+2  3                   Bool  7.4   false  False  True  True True  False
+                             7.5   false  False
+2  4                   Bool  7.6   false  False  True  True True  False
+                             7.7   false  False
+2  5                   Bool  8.0   false  False  True  True True  False
+                             8.1   false  False
+2  6                   Bool  8.2   false  False  True  True True  False
+                             8.3   false  False
+2  7                   Bool  8.4   false  False  True  True True  False
+                             8.5   false  False
+2  8                   Bool  8.6   false  False  True  True True  False
+                             8.7   false  False
+2  9                   Bool  9.0   false  False  True  True True  False
+                             9.1   false  False
+2  10  Bool                  9.2   false  False  True  True True  False
+                             9.3   false  False
+2  LEDa                Bool  9.4   false  False  True  True True  False
+                             9.5   false  False
+2  LEDb                Bool  9.6   false  False  True  True True  False
+                             9.7   false  False
+2  LEDc                Bool  10.0  false  False  True  True True  False
+                             10.1  false  False
+2  LEDd                Bool  10.2  false  False  True  True True  False
+                             10.3  false  False
+2  LEDe                Bool  10.4  false  False  True  True True  False
+                             10.5  false  False
+2  LEDf                Bool  10.6  false  False  True  True True  False
+                             10.7  false  False
+2  LEDg                Bool  11.0  false  False  True  True True  False
+                             11.1  false  False
+2  LEDh                Bool  11.2  false  False  True  True True  False
+                             11.3  false  False
+2  LEDi                Bool  11.4  false  False  True  True True  False
+                             11.5  false  False
+2  LEDj                Bool  11.6  false  False  True  True True  False
+                             11.7  false  False
+2  LEDk                Bool  12.0  false  False  True  True True  False
+                             12.1  false  False
+2  LEDl                Bool  12.2  false  False  True  True True  False
+                             12.3  false  False
+2  LEDm                Bool  12.4  false  False  True  True True  False
+                             12.5  false  False
+2  LEDn                Bool  12.6  false  False  True  True True  False
+                             12.7  false  False
+2                      Bool  13.0  false  False  True  True True  False
+                             13.1  false  False
+2                      Bool  13.2  false  False  True  True True  False
+                             13.3  false  False
+2                      Bool  13.4  false  False  True  True True  False
+                             13.5  false  False
+2                      Bool  13.6  false  False  True  True True  False
+                             13.7  false  False
+2                      Bool  14.0  false  False  True  True True  False
+                             14.1  false  False
+2                      Bool  14.2  false  False  True  True True  False
+                             14.3  false  False
+2                      Bool  14.4  false  False  True  True True  False
+                             14.5  false  False
+2                      Bool  14.6  false  False  True  True True  False
+                             14.7  false
+2                      Bool  15.0  false         True  True True  False
+                             15.1  false
+2                      Bool  15.2  false         True  True True  False
+                             15.3  false
+2                      Bool  15.4  false         True  True True  False
+                             15.5  false
+2                      Bool  15.6  false         True  True True  False
+                             15.7  false
+2                      Bool  16.0  false         True  True True  False
+                             16.1  false
+2  1                   Bool  16.2  false         True  True True  False
+                             16.3  false
+2  2                   Bool  16.4  false         True  True True  False
+                             16.5  false
+2  3                   Bool                      True  True True  False
+
+3  1                   Bool                      True  True True  False
+
+3  2                   Bool                      True  True True  False
+
+3  3                   Bool                      True  True True  False
+
+3  4                   Bool                      True  True True  False
+
+3  5                   Bool                      True  True True  False
+
+3  6                   Bool                      True  True True  False
+
+3  7                   Bool                      True  True True  False
+
+3  8                   Bool                      True  True True  False
+
+3  9                   Bool                      True  True True  False
+
+3  10  Bool                                      True  True True  False
+
+3  LEDa                Bool                      True  True True  False
+
+3  LEDb                Bool                      True  True True  False
+
+3  LEDc                Bool                      True  True True  False
+
+3  LEDd                Bool                      True  True True  False
+
+3  LEDe                Bool                      True  True True  False
+
+3  LEDf                Bool                      True  True True  False
+
+3  LEDg                Bool                      True  True True  False
+
+3  LEDh                Bool                      True  True True  False
+
+3  LEDi                Bool                      True  True True  False
+
+3  LEDj                Bool                      True  True True  False
+
+3  LEDk                Bool                      True  True True  False
+
+3  LEDl                Bool                      True  True True  False
+
+3  LEDm                Bool                      True  True True  False
+
+3  LEDn                Bool                      True  True True  False
+
+3                      Bool                      True  True True  False
+
+3                      Bool                      True  True True  False
+
+3                      Bool                      True  True True  False
+
+3                      Bool                      True  True True  False
+
+3                      Bool                      True  True True  False
+
+3                      Bool                      True  True True  False
+
+3                      Bool                      True  True True  False
+
+3                      Bool                      True  True True  False
+
+3                      Bool                      True  True True  False
+
+3                      Bool                      True  True True  False
+
+3                      Bool                      True  True True  False
+
+3                      Bool                      True  True True  False
+   Totally Integrated                                    HMI               
+   Automation Portal
+                                          False
+                                          False
+                                          False
+                                          False  HMI/OPC HMI/ 
+                                          False
+                                                 UA/Web OPC 
+
+                                                 API  UA/
+
+                                                       Web
+
+                                                       API
+
+                                                       
+
+3                      Bool  16.6  false         True  True True  False
+                             16.7  false
+3  1                   Bool  17.0  false         True  True True  False
+                             17.1  false
+3  2                   Bool  17.2  false         True  True True  False
+
+3  3                   Bool                      True  True True  False
+
+                       Bool                      True  True True  False
+Totally Integrated
+Automation Portal
+
+ /  / 
+
+IEC_Timer_0_DB_13 [DB27]
+
+IEC_Timer_0_DB_13 
+
+
+
+        IEC_Timer_0_DB_13                 27                         DB                DB
+
+        
+
+
+
+                                          Simatic                                      IEC
+
+        1.0                       ID IEC_TMR
+
+                                                                  HMI                
+
+                                                   False  HMI/OPC HMI/ 
+                                                   False
+                                                   False  UA/Web OPC 
+                                                   False
+                                                          API  UA/
+
+                                                                Web
+
+                                                                API
+
+                                                                
+
+Static                     Time    T#0ms                  True  True True   False
+                           Time    T#0ms
+   PT                      Bool    false                  True  False True  False
+   ET                      Bool    false
+   IN                                                     True  True True   False
+   Q
+                                                          True  False True  False
+Totally Integrated
+Automation Portal
+
+ /  / 
+
+IEC_Timer_0_DB_12 [DB26]
+
+IEC_Timer_0_DB_12 
+
+
+
+        IEC_Timer_0_DB_12                 26                         DB                DB
+
+        
+
+
+
+                                          Simatic                                      IEC
+
+        1.0                       ID IEC_TMR
+
+                                                                  HMI                
+
+                                                   False  HMI/OPC HMI/ 
+                                                   False
+                                                   False  UA/Web OPC 
+                                                   False
+                                                          API  UA/
+
+                                                                Web
+
+                                                                API
+
+                                                                
+
+Static                     Time    T#0ms                  True  True True   False
+                           Time    T#0ms
+   PT                      Bool    false                  True  False True  False
+   ET                      Bool    false
+   IN                                                     True  True True   False
+   Q
+                                                          True  False True  False
+Totally Integrated
+Automation Portal
+
+ /  / 
+
+IEC_Timer_0_DB_14 [DB28]
+
+IEC_Timer_0_DB_14 
+
+
+
+        IEC_Timer_0_DB_14                 28                         DB                DB
+
+        
+
+
+
+                                          Simatic                                      IEC
+
+        1.0                       ID IEC_TMR
+
+                                                                  HMI                
+
+                                                   False  HMI/OPC HMI/ 
+                                                   False
+                                                   False  UA/Web OPC 
+                                                   False
+                                                          API  UA/
+
+                                                                Web
+
+                                                                API
+
+                                                                
+
+Static                     Time    T#0ms                  True  True True   False
+                           Time    T#0ms
+   PT                      Bool    false                  True  False True  False
+   ET                      Bool    false
+   IN                                                     True  True True   False
+   Q
+                                                          True  False True  False
+Totally Integrated
+Automation Portal
+
+ /  / 
+
+IEC_Timer_0_DB_5 [DB8]
+
+IEC_Timer_0_DB_5 
+
+
+
+        IEC_Timer_0_DB_5                 8                          DB                DB
+
+        
+
+
+
+                                         Simatic                                      IEC
+
+        1.0                      ID IEC_TMR
+
+                                                                 HMI                
+
+                                                  False  HMI/OPC HMI/ 
+                                                  False
+                                                  False  UA/Web OPC 
+                                                  False
+                                                         API  UA/
+
+                                                               Web
+
+                                                               API
+
+                                                               
+
+Static                    Time    T#0ms                  True  True True   False
+                          Time    T#0ms
+   PT                     Bool    false                  True  False True  False
+   ET                     Bool    false
+   IN                                                    True  True True   False
+   Q
+                                                         True  False True  False
+Totally Integrated
+Automation Portal
+
+ /  / 
+
+T3 [DB6]
+
+T3      T3                         6                          DB                DB
+        
+                                   Simatic                                      IEC
+        1.0
+                           ID IEC_TMR
+
+                                                           HMI                
+
+                                            False
+                                            False
+                                            False  HMI/OPC HMI/ 
+                                            False
+                                                   UA/Web OPC 
+
+                                                   API  UA/
+
+                                                         Web
+
+                                                         API
+
+                                                         
+
+Static              Time    T#0ms                  True  True True   False
+                    Time    T#0ms
+   PT               Bool    false                  True  False True  False
+   ET               Bool    false
+   IN                                              True  True True   False
+   Q
+                                                   True  False True  False
+Totally Integrated
+Automation Portal
+
+ /  / 
+
+T1 [DB4]
+
+T1      T1                         4                          DB                DB
+        
+                                   Simatic                                      IEC
+        1.0
+                           ID IEC_TMR
+
+                                                           HMI                
+
+                                            False
+                                            False
+                                            False  HMI/OPC HMI/ 
+                                            False
+                                                   UA/Web OPC 
+
+                                                   API  UA/
+
+                                                         Web
+
+                                                         API
+
+                                                         
+
+Static              Time    T#0ms                  True  True True   False
+                    Time    T#0ms
+   PT               Bool    false                  True  False True  False
+   ET               Bool    false
+   IN                                              True  True True   False
+   Q
+                                                   True  False True  False
+Totally Integrated
+Automation Portal
+
+ /  / 
+
+IEC_Timer_0_DB_29 [DB45]
+
+IEC_Timer_0_DB_29 
+
+
+
+        IEC_Timer_0_DB_29                 45                         DB                DB
+
+        
+
+
+
+                                          Simatic                                      IEC
+
+        1.0                       ID IEC_TMR
+
+                                                                  HMI                
+
+                                                   False  HMI/OPC HMI/ 
+                                                   False
+                                                   False  UA/Web OPC 
+                                                   False
+                                                          API  UA/
+
+                                                                Web
+
+                                                                API
+
+                                                                
+
+Static                     Time    T#0ms                  True  True True   False
+                           Time    T#0ms
+   PT                      Bool    false                  True  False True  False
+   ET                      Bool    false
+   IN                                                     True  True True   False
+   Q
+                                                          True  False True  False
+Totally Integrated
+Automation Portal
+
+ /  / 
+
+IEC_Timer_0_DB_15 [DB29]
+
+IEC_Timer_0_DB_15 
+
+
+
+        IEC_Timer_0_DB_15                 29                         DB                DB
+
+        
+
+
+
+                                          Simatic                                      IEC
+
+        1.0                       ID IEC_TMR
+
+                                                                  HMI                
+
+                                                   False  HMI/OPC HMI/ 
+                                                   False
+                                                   False  UA/Web OPC 
+                                                   False
+                                                          API  UA/
+
+                                                                Web
+
+                                                                API
+
+                                                                
+
+Static                     Time    T#0ms                  True  True True   False
+                           Time    T#0ms
+   PT                      Bool    false                  True  False True  False
+   ET                      Bool    false
+   IN                                                     True  True True   False
+   Q
+                                                          True  False True  False
+Totally Integrated
+Automation Portal
+
+ /  / 
+
+IEC_Timer_0_DB_16 [DB30]
+
+IEC_Timer_0_DB_16 
+
+
+
+        IEC_Timer_0_DB_16                 30                         DB                DB
+
+        
+
+
+
+                                          Simatic                                      IEC
+
+        1.0                       ID IEC_TMR
+
+                                                                  HMI                
+
+                                                   False  HMI/OPC HMI/ 
+                                                   False
+                                                   False  UA/Web OPC 
+                                                   False
+                                                          API  UA/
+
+                                                                Web
+
+                                                                API
+
+                                                                
+
+Static                     Time    T#0ms                  True  True True   False
+                           Time    T#0ms
+   PT                      Bool    false                  True  False True  False
+   ET                      Bool    false
+   IN                                                     True  True True   False
+   Q
+                                                          True  False True  False
+Totally Integrated
+Automation Portal
+
+ /  / 
+
+IEC_Timer_0_DB_17 [DB31]
+
+IEC_Timer_0_DB_17 
+
+
+
+        IEC_Timer_0_DB_17                 31                         DB                DB
+
+        
+
+
+
+                                          Simatic                                      IEC
+
+        1.0                       ID IEC_TMR
+
+                                                                  HMI                
+
+                                                   False  HMI/OPC HMI/ 
+                                                   False
+                                                   False  UA/Web OPC 
+                                                   False
+                                                          API  UA/
+
+                                                                Web
+
+                                                                API
+
+                                                                
+
+Static                     Time    T#0ms                  True  True True   False
+                           Time    T#0ms
+   PT                      Bool    false                  True  False True  False
+   ET                      Bool    false
+   IN                                                     True  True True   False
+   Q
+                                                          True  False True  False
+Totally Integrated
+Automation Portal
+
+ /  / 
+
+IEC_Timer_0_DB_28 [DB44]
+
+IEC_Timer_0_DB_28 
+
+
+
+        IEC_Timer_0_DB_28                 44                         DB                DB
+
+        
+
+
+
+                                          Simatic                                      IEC
+
+        1.0                       ID IEC_TMR
+
+                                                                  HMI                
+
+                                                   False  HMI/OPC HMI/ 
+                                                   False
+                                                   False  UA/Web OPC 
+                                                   False
+                                                          API  UA/
+
+                                                                Web
+
+                                                                API
+
+                                                                
+
+Static                     Time    T#0ms                  True  True True   False
+                           Time    T#0ms
+   PT                      Bool    false                  True  False True  False
+   ET                      Bool    false
+   IN                                                     True  True True   False
+   Q
+                                                          True  False True  False
+Totally Integrated
+Automation Portal
+
+ /  / 
+
+T2 [DB5]
+
+T2      T2                         5                          DB                DB
+        
+                                   Simatic                                      IEC
+        1.0
+                           ID IEC_TMR
+
+                                                           HMI                
+
+                                            False
+                                            False
+                                            False  HMI/OPC HMI/ 
+                                            False
+                                                   UA/Web OPC 
+
+                                                   API  UA/
+
+                                                         Web
+
+                                                         API
+
+                                                         
+
+Static              Time    T#0ms                  True  True True   False
+                    Time    T#0ms
+   PT               Bool    false                  True  False True  False
+   ET               Bool    false
+   IN                                              True  True True   False
+   Q
+                                                   True  False True  False
+Totally Integrated
+Automation Portal
+
+ /  / 
+
+IEC_Timer_0_DB_25 [DB41]
+
+IEC_Timer_0_DB_25 
+
+
+
+        IEC_Timer_0_DB_25                 41                         DB                DB
+
+        
+
+
+
+                                          Simatic                                      IEC
+
+        1.0                       ID IEC_TMR
+
+                                                                  HMI                
+
+                                                   False  HMI/OPC HMI/ 
+                                                   False
+                                                   False  UA/Web OPC 
+                                                   False
+                                                          API  UA/
+
+                                                                Web
+
+                                                                API
+
+                                                                
+
+Static                     Time    T#0ms                  True  True True   False
+                           Time    T#0ms
+   PT                      Bool    false                  True  False True  False
+   ET                      Bool    false
+   IN                                                     True  True True   False
+   Q
+                                                          True  False True  False
+Totally Integrated
+Automation Portal
+
+ /  / 
+
+IEC_Timer_0_DB_26 [DB42]
+
+IEC_Timer_0_DB_26 
+
+
+
+        IEC_Timer_0_DB_26                 42                         DB                DB
+
+        
+
+
+
+                                          Simatic                                      IEC
+
+        1.0                       ID IEC_TMR
+
+                                                                  HMI                
+
+                                                   False  HMI/OPC HMI/ 
+                                                   False
+                                                   False  UA/Web OPC 
+                                                   False
+                                                          API  UA/
+
+                                                                Web
+
+                                                                API
+
+                                                                
+
+Static                     Time    T#0ms                  True  True True   False
+                           Time    T#0ms
+   PT                      Bool    false                  True  False True  False
+   ET                      Bool    false
+   IN                                                     True  True True   False
+   Q
+                                                          True  False True  False
+Totally Integrated
+Automation Portal
+
+ /  / 
+
+IEC_Timer_0_DB_27 [DB43]
+
+IEC_Timer_0_DB_27 
+
+
+
+        IEC_Timer_0_DB_27                 43                         DB                DB
+
+        
+
+
+
+                                          Simatic                                      IEC
+
+        1.0                       ID IEC_TMR
+
+                                                                  HMI                
+
+                                                   False  HMI/OPC HMI/ 
+                                                   False
+                                                   False  UA/Web OPC 
+                                                   False
+                                                          API  UA/
+
+                                                                Web
+
+                                                                API
+
+                                                                
+
+Static                     Time    T#0ms                  True  True True   False
+                           Time    T#0ms
+   PT                      Bool    false                  True  False True  False
+   ET                      Bool    false
+   IN                                                     True  True True   False
+   Q
+                                                          True  False True  False
+
