@@ -1,0 +1,78 @@
+FUNCTION "FC_GC_Score" : INT
+VAR_INPUT
+    ReqFloor : INT;              // 请求楼层
+    ReqDir : INT;                // 请求方向：1上行，-1下行
+
+    LiftFloor : INT;             // 电梯当前楼层
+    LiftDir : INT;               // 电梯方向：1上行，-1下行，0停止
+    LiftRunning : BOOL;          // 是否运行
+    LiftLoadPercent : INT;       // 载客率 0~100
+
+    TaskCount : INT;             // 总任务数量：外呼 + 内呼
+    AheadTaskCount : INT;        // 前方任务数量
+
+    CanUse : BOOL;               // 是否允许参与调度
+
+    W_Distance : INT;            // 距离权重
+    W_Direction : INT;           // 方向惩罚
+    W_Task : INT;                // 总任务惩罚
+    W_AheadTask : INT;           // 前方任务惩罚
+    W_LoadPercent : REAL;        // 载客率惩罚
+END_VAR
+
+VAR_TEMP
+    dist : INT;
+    score : INT;
+END_VAR
+
+BEGIN
+    IF NOT #CanUse THEN
+        "FC_GC_Score" := 32000;
+    ELSE
+        #dist := ABS(#ReqFloor - #LiftFloor);
+        #score := #dist * #W_Distance;
+
+        // =========================
+        // 方向评分
+        // =========================
+        IF #LiftDir = 0 THEN
+            // 静止电梯不加方向惩罚
+            #score := #score + 0;
+
+        ELSIF #LiftDir = #ReqDir THEN
+
+            // 同方向，并且请求楼层在前进方向上
+            IF ((#ReqDir = 1) AND (#ReqFloor >= #LiftFloor)) OR
+               ((#ReqDir = -1) AND (#ReqFloor <= #LiftFloor)) THEN
+                #score := #score + 0;
+            ELSE
+                // 同方向但已经错过该楼层
+                #score := #score + #W_Direction;
+            END_IF;
+
+        ELSE
+            // 反方向，惩罚更大
+            #score := #score + (#W_Direction * 2);
+        END_IF;
+
+        // 总任务数量惩罚
+        #score := #score + (#TaskCount * #W_Task);
+
+        // 前方任务数量惩罚
+        #score := #score + (#AheadTaskCount * #W_AheadTask);
+
+        // 载客率惩罚
+        #score := #score + REAL_TO_INT(INT_TO_REAL(#LiftLoadPercent) * #W_LoadPercent);
+
+        // 空闲电梯小奖励
+        IF (NOT #LiftRunning) AND (#LiftDir = 0) THEN
+            #score := #score - 5;
+        END_IF;
+
+        IF #score < 0 THEN
+            #score := 0;
+        END_IF;
+
+        "FC_GC_Score" := #score;
+    END_IF;
+END_FUNCTION

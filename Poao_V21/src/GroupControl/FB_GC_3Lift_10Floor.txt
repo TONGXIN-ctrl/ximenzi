@@ -1,0 +1,695 @@
+FUNCTION_BLOCK "FB_GC_3Lift_10Floor"
+VAR_INPUT
+    HallUpBtn : ARRAY[1..10] OF BOOL;
+    HallDownBtn : ARRAY[1..10] OF BOOL;
+
+    LiftCarCall : ARRAY[1..3, 1..10] OF BOOL;
+
+    LiftGroupEnable : ARRAY[1..3] OF BOOL;
+    LiftLocked : ARRAY[1..3] OF BOOL;
+    LiftDisabled : ARRAY[1..3] OF BOOL;
+
+    LiftFloor : ARRAY[1..3] OF INT;
+    LiftDir : ARRAY[1..3] OF INT;          // -1下行，0停止，1上行
+    LiftRunning : ARRAY[1..3] OF BOOL;
+    LiftDoorOpen : ARRAY[1..3] OF BOOL;
+    LiftLoadPercent : ARRAY[1..3] OF INT;
+    LiftPower_kW : ARRAY[1..3] OF REAL;
+
+    // 0：普通全区
+    // 1：上班上行高峰
+    // 2：下班下行高峰
+    // 3：午餐高峰
+    // 4：固定三分区
+    GroupMode : INT;
+
+    CycleTime_s : REAL;
+
+    LongWaitLimit_s : REAL;
+    FullLoadLimitPercent : INT;
+    EmptyLoadLimitPercent : INT;
+
+    W_Distance : INT;
+    W_Direction : INT;
+    W_Task : INT;
+    W_AheadTask : INT;
+    W_LoadPercent : REAL;
+
+    RideFinishPulse : ARRAY[1..3] OF BOOL;
+    RideTimeSample_s : ARRAY[1..3] OF REAL;
+END_VAR
+
+VAR_IN_OUT
+    LiftHallUp : ARRAY[1..3, 1..10] OF BOOL;
+    LiftHallDown : ARRAY[1..3, 1..10] OF BOOL;
+END_VAR
+
+VAR_OUTPUT
+    AssignedLiftUp : ARRAY[1..10] OF INT;
+    AssignedLiftDown : ARRAY[1..10] OF INT;
+
+    LiftTaskCount : ARRAY[1..3] OF INT;
+    AheadTaskCountOut : ARRAY[1..3] OF INT;
+
+    AvgWait_s : REAL;
+    CurrentAvgWait_s : REAL;
+    CurrentWaitingCount : INT;
+
+    LongWaitRatePercent : REAL;
+    AvgRideTime_s : REAL;
+
+    LiftEfficiencyPercent : ARRAY[1..3] OF REAL;
+    SystemEmptyRatePercent : REAL;
+
+    LiftEnergy_kWh : ARRAY[1..3] OF REAL;
+    SystemEnergy_kWh : REAL;
+END_VAR
+
+VAR
+    PrevHallUpBtn : ARRAY[1..10] OF BOOL;
+    PrevHallDownBtn : ARRAY[1..10] OF BOOL;
+
+    PendingUp : ARRAY[1..10] OF BOOL;
+    PendingDown : ARRAY[1..10] OF BOOL;
+
+    AssignedUp : ARRAY[1..10] OF INT;
+    AssignedDown : ARRAY[1..10] OF INT;
+
+    WaitUp_s : ARRAY[1..10] OF REAL;
+    WaitDown_s : ARRAY[1..10] OF REAL;
+
+    LongFlagUp : ARRAY[1..10] OF BOOL;
+    LongFlagDown : ARRAY[1..10] OF BOOL;
+
+    TotalCallCnt : DINT;
+    ServedCallCnt : DINT;
+    LongWaitCnt : DINT;
+
+    TotalWait_s : REAL;
+    TotalRideTime_s : REAL;
+    RideCnt : DINT;
+    PrevRideFinishPulse : ARRAY[1..3] OF BOOL;
+
+    OnlineTime_s : ARRAY[1..3] OF REAL;
+    RunTime_s : ARRAY[1..3] OF REAL;
+    EmptyRunTime_s : ARRAY[1..3] OF REAL;
+    Energy_kWh : ARRAY[1..3] OF REAL;
+END_VAR
+
+VAR_TEMP
+    e : INT;
+    f : INT;
+    bestLift : INT;
+    bestScore : INT;
+    score : INT;
+
+    dt : REAL;
+    longLimit : REAL;
+    fullLimit : INT;
+    emptyLimit : INT;
+
+    wDist : INT;
+    wDir : INT;
+    wTask : INT;
+    wAheadTask : INT;
+    wLoad : REAL;
+
+    ServiceEnable : ARRAY[1..3, 1..10] OF BOOL;
+    canUse : BOOL;
+
+    AheadTaskCount : ARRAY[1..3] OF INT;
+    curFloor : INT;
+
+    sumRun : REAL;
+    sumEmptyRun : REAL;
+    sumActiveWait : REAL;
+END_VAR
+
+BEGIN
+    // ==================================================
+    // 0. 参数默认值保护
+    // ==================================================
+    IF #CycleTime_s <= 0.0 THEN
+        #dt := 0.1;
+    ELSE
+        #dt := #CycleTime_s;
+    END_IF;
+
+    IF #LongWaitLimit_s <= 0.0 THEN
+        #longLimit := 60.0;
+    ELSE
+        #longLimit := #LongWaitLimit_s;
+    END_IF;
+
+    IF #FullLoadLimitPercent <= 0 THEN
+        #fullLimit := 95;
+    ELSE
+        #fullLimit := #FullLoadLimitPercent;
+    END_IF;
+
+    IF #EmptyLoadLimitPercent < 0 THEN
+        #emptyLimit := 5;
+    ELSE
+        #emptyLimit := #EmptyLoadLimitPercent;
+    END_IF;
+
+    IF #W_Distance <= 0 THEN
+        #wDist := 10;
+    ELSE
+        #wDist := #W_Distance;
+    END_IF;
+
+    IF #W_Direction <= 0 THEN
+        #wDir := 30;
+    ELSE
+        #wDir := #W_Direction;
+    END_IF;
+
+    IF #W_Task <= 0 THEN
+        #wTask := 6;
+    ELSE
+        #wTask := #W_Task;
+    END_IF;
+
+    IF #W_AheadTask <= 0 THEN
+        #wAheadTask := 8;
+    ELSE
+        #wAheadTask := #W_AheadTask;
+    END_IF;
+
+    IF #W_LoadPercent <= 0.0 THEN
+        #wLoad := 0.2;
+    ELSE
+        #wLoad := #W_LoadPercent;
+    END_IF;
+
+
+    // ==================================================
+    // 1. 动态分区服务表
+    // ==================================================
+    FOR #e := 1 TO 3 DO
+        FOR #f := 1 TO 10 DO
+
+            IF #GroupMode = 0 THEN
+                // 普通模式：所有电梯服务全部楼层
+                #ServiceEnable[#e, #f] := TRUE;
+
+            ELSIF #GroupMode = 1 THEN
+                // 上班上行高峰
+                // 1号低区，2号高区，3号全区支援
+                IF #e = 1 THEN
+                    #ServiceEnable[#e, #f] := (#f >= 1) AND (#f <= 5);
+                ELSIF #e = 2 THEN
+                    #ServiceEnable[#e, #f] := (#f = 1) OR (#f >= 6);
+                ELSE
+                    #ServiceEnable[#e, #f] := TRUE;
+                END_IF;
+
+            ELSIF #GroupMode = 2 THEN
+                // 下班下行高峰
+                IF #e = 1 THEN
+                    #ServiceEnable[#e, #f] := (#f >= 1) AND (#f <= 5);
+                ELSIF #e = 2 THEN
+                    #ServiceEnable[#e, #f] := (#f >= 6) AND (#f <= 10);
+                ELSE
+                    #ServiceEnable[#e, #f] := TRUE;
+                END_IF;
+
+            ELSIF #GroupMode = 3 THEN
+                // 午餐高峰，中间楼层重叠
+                IF #e = 1 THEN
+                    #ServiceEnable[#e, #f] := (#f >= 1) AND (#f <= 6);
+                ELSIF #e = 2 THEN
+                    #ServiceEnable[#e, #f] := (#f >= 5) AND (#f <= 10);
+                ELSE
+                    #ServiceEnable[#e, #f] := TRUE;
+                END_IF;
+
+            ELSIF #GroupMode = 4 THEN
+                // 固定三分区
+                IF #e = 1 THEN
+                    #ServiceEnable[#e, #f] := (#f >= 1) AND (#f <= 4);
+                ELSIF #e = 2 THEN
+                    #ServiceEnable[#e, #f] := (#f >= 4) AND (#f <= 7);
+                ELSE
+                    #ServiceEnable[#e, #f] := (#f >= 7) AND (#f <= 10);
+                END_IF;
+
+            ELSE
+                #ServiceEnable[#e, #f] := TRUE;
+            END_IF;
+
+        END_FOR;
+    END_FOR;
+
+
+    // ==================================================
+    // 2. 无效楼层清除
+    // ==================================================
+    FOR #e := 1 TO 3 DO
+        #LiftHallUp[#e, 10] := FALSE;     // 10层没有上呼
+        #LiftHallDown[#e, 1] := FALSE;    // 1层没有下呼
+    END_FOR;
+
+
+    // ==================================================
+    // 3. 锁梯 / 禁用 / 退出群控 / 分区变化时回收任务
+    // ==================================================
+    FOR #f := 1 TO 9 DO
+        #e := #AssignedUp[#f];
+
+        IF (#e >= 1) AND (#e <= 3) THEN
+            IF (NOT #LiftGroupEnable[#e]) OR #LiftLocked[#e] OR #LiftDisabled[#e] OR
+               (NOT #ServiceEnable[#e, #f]) THEN
+
+                #PendingUp[#f] := TRUE;
+                #AssignedUp[#f] := 0;
+                #LiftHallUp[#e, #f] := FALSE;
+            END_IF;
+        ELSE
+            #AssignedUp[#f] := 0;
+        END_IF;
+    END_FOR;
+
+    FOR #f := 2 TO 10 DO
+        #e := #AssignedDown[#f];
+
+        IF (#e >= 1) AND (#e <= 3) THEN
+            IF (NOT #LiftGroupEnable[#e]) OR #LiftLocked[#e] OR #LiftDisabled[#e] OR
+               (NOT #ServiceEnable[#e, #f]) THEN
+
+                #PendingDown[#f] := TRUE;
+                #AssignedDown[#f] := 0;
+                #LiftHallDown[#e, #f] := FALSE;
+            END_IF;
+        ELSE
+            #AssignedDown[#f] := 0;
+        END_IF;
+    END_FOR;
+
+    // 被锁梯、禁用、退出群控的电梯清除群控外呼
+    FOR #e := 1 TO 3 DO
+        IF (NOT #LiftGroupEnable[#e]) OR #LiftLocked[#e] OR #LiftDisabled[#e] THEN
+            FOR #f := 1 TO 10 DO
+                #LiftHallUp[#e, #f] := FALSE;
+                #LiftHallDown[#e, #f] := FALSE;
+            END_FOR;
+        END_IF;
+    END_FOR;
+
+
+    // ==================================================
+    // 4. 外呼按钮上升沿采集
+    // ==================================================
+
+    // 上呼：1~9层有效
+    FOR #f := 1 TO 9 DO
+        IF #HallUpBtn[#f] AND (NOT #PrevHallUpBtn[#f]) THEN
+            IF (NOT #PendingUp[#f]) AND (#AssignedUp[#f] = 0) THEN
+                #PendingUp[#f] := TRUE;
+                #WaitUp_s[#f] := 0.0;
+                #LongFlagUp[#f] := FALSE;
+                #TotalCallCnt := #TotalCallCnt + 1;
+            END_IF;
+        END_IF;
+
+        #PrevHallUpBtn[#f] := #HallUpBtn[#f];
+    END_FOR;
+
+    // 下呼：2~10层有效
+    FOR #f := 2 TO 10 DO
+        IF #HallDownBtn[#f] AND (NOT #PrevHallDownBtn[#f]) THEN
+            IF (NOT #PendingDown[#f]) AND (#AssignedDown[#f] = 0) THEN
+                #PendingDown[#f] := TRUE;
+                #WaitDown_s[#f] := 0.0;
+                #LongFlagDown[#f] := FALSE;
+                #TotalCallCnt := #TotalCallCnt + 1;
+            END_IF;
+        END_IF;
+
+        #PrevHallDownBtn[#f] := #HallDownBtn[#f];
+    END_FOR;
+
+
+    // ==================================================
+    // 5. 到站开门，认为外呼完成
+    // ==================================================
+    FOR #f := 1 TO 9 DO
+        #e := #AssignedUp[#f];
+
+        IF (#e >= 1) AND (#e <= 3) THEN
+            IF (#LiftFloor[#e] = #f) AND #LiftDoorOpen[#e] THEN
+                #LiftHallUp[#e, #f] := FALSE;
+                #AssignedUp[#f] := 0;
+
+                #ServedCallCnt := #ServedCallCnt + 1;
+                #TotalWait_s := #TotalWait_s + #WaitUp_s[#f];
+
+                #WaitUp_s[#f] := 0.0;
+                #LongFlagUp[#f] := FALSE;
+            END_IF;
+        END_IF;
+    END_FOR;
+
+    FOR #f := 2 TO 10 DO
+        #e := #AssignedDown[#f];
+
+        IF (#e >= 1) AND (#e <= 3) THEN
+            IF (#LiftFloor[#e] = #f) AND #LiftDoorOpen[#e] THEN
+                #LiftHallDown[#e, #f] := FALSE;
+                #AssignedDown[#f] := 0;
+
+                #ServedCallCnt := #ServedCallCnt + 1;
+                #TotalWait_s := #TotalWait_s + #WaitDown_s[#f];
+
+                #WaitDown_s[#f] := 0.0;
+                #LongFlagDown[#f] := FALSE;
+            END_IF;
+        END_IF;
+    END_FOR;
+
+
+    // ==================================================
+    // 6. 等待时间统计
+    // ==================================================
+    #CurrentWaitingCount := 0;
+    #sumActiveWait := 0.0;
+
+    FOR #f := 1 TO 9 DO
+        IF #PendingUp[#f] OR (#AssignedUp[#f] <> 0) THEN
+            #WaitUp_s[#f] := #WaitUp_s[#f] + #dt;
+            #CurrentWaitingCount := #CurrentWaitingCount + 1;
+            #sumActiveWait := #sumActiveWait + #WaitUp_s[#f];
+
+            IF (#WaitUp_s[#f] >= #longLimit) AND (NOT #LongFlagUp[#f]) THEN
+                #LongFlagUp[#f] := TRUE;
+                #LongWaitCnt := #LongWaitCnt + 1;
+            END_IF;
+        END_IF;
+    END_FOR;
+
+    FOR #f := 2 TO 10 DO
+        IF #PendingDown[#f] OR (#AssignedDown[#f] <> 0) THEN
+            #WaitDown_s[#f] := #WaitDown_s[#f] + #dt;
+            #CurrentWaitingCount := #CurrentWaitingCount + 1;
+            #sumActiveWait := #sumActiveWait + #WaitDown_s[#f];
+
+            IF (#WaitDown_s[#f] >= #longLimit) AND (NOT #LongFlagDown[#f]) THEN
+                #LongFlagDown[#f] := TRUE;
+                #LongWaitCnt := #LongWaitCnt + 1;
+            END_IF;
+        END_IF;
+    END_FOR;
+
+    IF #CurrentWaitingCount > 0 THEN
+        #CurrentAvgWait_s := #sumActiveWait / INT_TO_REAL(#CurrentWaitingCount);
+    ELSE
+        #CurrentAvgWait_s := 0.0;
+    END_IF;
+
+
+    // ==================================================
+    // 7. 统计每部电梯总任务数量
+    // 外呼 + 内呼都算
+    // ==================================================
+    FOR #e := 1 TO 3 DO
+        #LiftTaskCount[#e] := 0;
+    END_FOR;
+
+    FOR #e := 1 TO 3 DO
+
+        // 上呼任务
+        FOR #f := 1 TO 9 DO
+            IF #LiftHallUp[#e, #f] THEN
+                #LiftTaskCount[#e] := #LiftTaskCount[#e] + 1;
+            END_IF;
+        END_FOR;
+
+        // 下呼任务
+        FOR #f := 2 TO 10 DO
+            IF #LiftHallDown[#e, #f] THEN
+                #LiftTaskCount[#e] := #LiftTaskCount[#e] + 1;
+            END_IF;
+        END_FOR;
+
+        // 内呼任务
+        FOR #f := 1 TO 10 DO
+            IF #LiftCarCall[#e, #f] THEN
+                #LiftTaskCount[#e] := #LiftTaskCount[#e] + 1;
+            END_IF;
+        END_FOR;
+
+    END_FOR;
+
+
+    // ==================================================
+    // 8. 统计前方任务数量
+    // ==================================================
+    FOR #e := 1 TO 3 DO
+        #AheadTaskCount[#e] := 0;
+
+        #curFloor := #LiftFloor[#e];
+
+        IF #curFloor < 1 THEN
+            #curFloor := 1;
+        ELSIF #curFloor > 10 THEN
+            #curFloor := 10;
+        END_IF;
+
+        IF #LiftDir[#e] = 1 THEN
+
+            IF #curFloor < 10 THEN
+                FOR #f := #curFloor + 1 TO 10 DO
+
+                    IF #LiftCarCall[#e, #f] THEN
+                        #AheadTaskCount[#e] := #AheadTaskCount[#e] + 1;
+                    END_IF;
+
+                    IF #f <= 9 THEN
+                        IF #LiftHallUp[#e, #f] THEN
+                            #AheadTaskCount[#e] := #AheadTaskCount[#e] + 1;
+                        END_IF;
+                    END_IF;
+
+                    IF #f >= 2 THEN
+                        IF #LiftHallDown[#e, #f] THEN
+                            #AheadTaskCount[#e] := #AheadTaskCount[#e] + 1;
+                        END_IF;
+                    END_IF;
+
+                END_FOR;
+            END_IF;
+
+        ELSIF #LiftDir[#e] = -1 THEN
+
+            IF #curFloor > 1 THEN
+                FOR #f := 1 TO #curFloor - 1 DO
+
+                    IF #LiftCarCall[#e, #f] THEN
+                        #AheadTaskCount[#e] := #AheadTaskCount[#e] + 1;
+                    END_IF;
+
+                    IF #f <= 9 THEN
+                        IF #LiftHallUp[#e, #f] THEN
+                            #AheadTaskCount[#e] := #AheadTaskCount[#e] + 1;
+                        END_IF;
+                    END_IF;
+
+                    IF #f >= 2 THEN
+                        IF #LiftHallDown[#e, #f] THEN
+                            #AheadTaskCount[#e] := #AheadTaskCount[#e] + 1;
+                        END_IF;
+                    END_IF;
+
+                END_FOR;
+            END_IF;
+
+        ELSE
+            #AheadTaskCount[#e] := 0;
+        END_IF;
+
+        #AheadTaskCountOut[#e] := #AheadTaskCount[#e];
+
+    END_FOR;
+
+
+    // ==================================================
+    // 9. 分配上呼请求
+    // ==================================================
+    FOR #f := 1 TO 9 DO
+        IF #PendingUp[#f] THEN
+            #bestLift := 0;
+            #bestScore := 32000;
+
+            FOR #e := 1 TO 3 DO
+                #canUse :=
+                    #LiftGroupEnable[#e] AND
+                    (NOT #LiftLocked[#e]) AND
+                    (NOT #LiftDisabled[#e]) AND
+                    #ServiceEnable[#e, #f] AND
+                    (#LiftLoadPercent[#e] < #fullLimit);
+
+                #score := "FC_GC_Score"(
+                    ReqFloor        := #f,
+                    ReqDir          := 1,
+                    LiftFloor       := #LiftFloor[#e],
+                    LiftDir         := #LiftDir[#e],
+                    LiftRunning     := #LiftRunning[#e],
+                    LiftLoadPercent := #LiftLoadPercent[#e],
+                    TaskCount       := #LiftTaskCount[#e],
+                    AheadTaskCount  := #AheadTaskCount[#e],
+                    CanUse          := #canUse,
+                    W_Distance      := #wDist,
+                    W_Direction     := #wDir,
+                    W_Task          := #wTask,
+                    W_AheadTask     := #wAheadTask,
+                    W_LoadPercent   := #wLoad
+                );
+
+                IF #score < #bestScore THEN
+                    #bestScore := #score;
+                    #bestLift := #e;
+                END_IF;
+            END_FOR;
+
+            IF #bestLift <> 0 THEN
+                #LiftHallUp[#bestLift, #f] := TRUE;
+                #AssignedUp[#f] := #bestLift;
+                #PendingUp[#f] := FALSE;
+
+                #LiftTaskCount[#bestLift] := #LiftTaskCount[#bestLift] + 1;
+            END_IF;
+        END_IF;
+    END_FOR;
+
+
+    // ==================================================
+    // 10. 分配下呼请求
+    // ==================================================
+    FOR #f := 2 TO 10 DO
+        IF #PendingDown[#f] THEN
+            #bestLift := 0;
+            #bestScore := 32000;
+
+            FOR #e := 1 TO 3 DO
+                #canUse :=
+                    #LiftGroupEnable[#e] AND
+                    (NOT #LiftLocked[#e]) AND
+                    (NOT #LiftDisabled[#e]) AND
+                    #ServiceEnable[#e, #f] AND
+                    (#LiftLoadPercent[#e] < #fullLimit);
+
+                #score := "FC_GC_Score"(
+                    ReqFloor        := #f,
+                    ReqDir          := -1,
+                    LiftFloor       := #LiftFloor[#e],
+                    LiftDir         := #LiftDir[#e],
+                    LiftRunning     := #LiftRunning[#e],
+                    LiftLoadPercent := #LiftLoadPercent[#e],
+                    TaskCount       := #LiftTaskCount[#e],
+                    AheadTaskCount  := #AheadTaskCount[#e],
+                    CanUse          := #canUse,
+                    W_Distance      := #wDist,
+                    W_Direction     := #wDir,
+                    W_Task          := #wTask,
+                    W_AheadTask     := #wAheadTask,
+                    W_LoadPercent   := #wLoad
+                );
+
+                IF #score < #bestScore THEN
+                    #bestScore := #score;
+                    #bestLift := #e;
+                END_IF;
+            END_FOR;
+
+            IF #bestLift <> 0 THEN
+                #LiftHallDown[#bestLift, #f] := TRUE;
+                #AssignedDown[#f] := #bestLift;
+                #PendingDown[#f] := FALSE;
+
+                #LiftTaskCount[#bestLift] := #LiftTaskCount[#bestLift] + 1;
+            END_IF;
+        END_IF;
+    END_FOR;
+
+
+    // ==================================================
+    // 11. 输出分配结果
+    // ==================================================
+    FOR #f := 1 TO 10 DO
+        #AssignedLiftUp[#f] := #AssignedUp[#f];
+        #AssignedLiftDown[#f] := #AssignedDown[#f];
+    END_FOR;
+
+
+    // ==================================================
+    // 12. 效能统计
+    // ==================================================
+    #sumRun := 0.0;
+    #sumEmptyRun := 0.0;
+    #SystemEnergy_kWh := 0.0;
+
+    FOR #e := 1 TO 3 DO
+
+        IF #LiftGroupEnable[#e] AND (NOT #LiftLocked[#e]) AND (NOT #LiftDisabled[#e]) THEN
+
+            #OnlineTime_s[#e] := #OnlineTime_s[#e] + #dt;
+
+            IF #LiftRunning[#e] THEN
+                #RunTime_s[#e] := #RunTime_s[#e] + #dt;
+
+                IF #LiftLoadPercent[#e] <= #emptyLimit THEN
+                    #EmptyRunTime_s[#e] := #EmptyRunTime_s[#e] + #dt;
+                END_IF;
+            END_IF;
+
+            #Energy_kWh[#e] := #Energy_kWh[#e] + (#LiftPower_kW[#e] * #dt / 3600.0);
+        END_IF;
+
+        IF #OnlineTime_s[#e] > 0.0 THEN
+            #LiftEfficiencyPercent[#e] := #RunTime_s[#e] / #OnlineTime_s[#e] * 100.0;
+        ELSE
+            #LiftEfficiencyPercent[#e] := 0.0;
+        END_IF;
+
+        #LiftEnergy_kWh[#e] := #Energy_kWh[#e];
+
+        #sumRun := #sumRun + #RunTime_s[#e];
+        #sumEmptyRun := #sumEmptyRun + #EmptyRunTime_s[#e];
+        #SystemEnergy_kWh := #SystemEnergy_kWh + #Energy_kWh[#e];
+
+        IF #RideFinishPulse[#e] AND (NOT #PrevRideFinishPulse[#e]) THEN
+            IF #RideTimeSample_s[#e] > 0.0 THEN
+                #TotalRideTime_s := #TotalRideTime_s + #RideTimeSample_s[#e];
+                #RideCnt := #RideCnt + 1;
+            END_IF;
+        END_IF;
+
+        #PrevRideFinishPulse[#e] := #RideFinishPulse[#e];
+    END_FOR;
+
+    IF #sumRun > 0.0 THEN
+        #SystemEmptyRatePercent := #sumEmptyRun / #sumRun * 100.0;
+    ELSE
+        #SystemEmptyRatePercent := 0.0;
+    END_IF;
+
+    IF #ServedCallCnt > 0 THEN
+        #AvgWait_s := #TotalWait_s / DINT_TO_REAL(#ServedCallCnt);
+    ELSE
+        #AvgWait_s := 0.0;
+    END_IF;
+
+    IF #TotalCallCnt > 0 THEN
+        #LongWaitRatePercent := DINT_TO_REAL(#LongWaitCnt) / DINT_TO_REAL(#TotalCallCnt) * 100.0;
+    ELSE
+        #LongWaitRatePercent := 0.0;
+    END_IF;
+
+    IF #RideCnt > 0 THEN
+        #AvgRideTime_s := #TotalRideTime_s / DINT_TO_REAL(#RideCnt);
+    ELSE
+        #AvgRideTime_s := 0.0;
+    END_IF;
+
+END_FUNCTION_BLOCK
