@@ -1,0 +1,66 @@
+FUNCTION "FC_GC_Score" : INT
+VAR_INPUT
+    ReqFloor : INT;
+    ReqDir : INT;
+
+    LiftFloor : INT;
+    LiftDir : INT;
+    LiftRunning : BOOL;
+    LiftLoadPercent : INT;
+
+    TaskCount : INT;
+    AheadTaskCount : INT;
+
+    CanUse : BOOL;
+
+    W_Distance : INT;
+    W_Direction : INT;
+    W_Task : INT;
+    W_AheadTask : INT;
+    W_LoadPercent : REAL;
+END_VAR
+
+VAR_TEMP
+    tmpDist : INT;
+    tmpScore : INT;
+END_VAR
+
+BEGIN
+    IF NOT #CanUse THEN
+        #FC_GC_Score := 32000;
+    ELSE
+        #tmpDist := ABS(#ReqFloor - #LiftFloor);
+        #tmpScore := #tmpDist * #W_Distance;
+
+        IF #LiftDir = 0 THEN
+            #tmpScore := #tmpScore + 0;
+
+        ELSIF #LiftDir = #ReqDir THEN
+
+            IF ((#ReqDir = 1) AND (#ReqFloor >= #LiftFloor)) OR
+               ((#ReqDir = -1) AND (#ReqFloor <= #LiftFloor)) THEN
+                #tmpScore := #tmpScore + 0;
+            ELSE
+                #tmpScore := #tmpScore + #W_Direction;
+            END_IF;
+
+        ELSE
+            #tmpScore := #tmpScore + (#W_Direction * 2);
+        END_IF;
+
+        #tmpScore := #tmpScore + (#TaskCount * #W_Task);
+        #tmpScore := #tmpScore + (#AheadTaskCount * #W_AheadTask);
+
+        #tmpScore := #tmpScore + REAL_TO_INT(INT_TO_REAL(#LiftLoadPercent) * #W_LoadPercent);
+
+        IF (NOT #LiftRunning) AND (#LiftDir = 0) THEN
+            #tmpScore := #tmpScore - 5;
+        END_IF;
+
+        IF #tmpScore < 0 THEN
+            #tmpScore := 0;
+        END_IF;
+
+        #FC_GC_Score := #tmpScore;
+    END_IF;
+END_FUNCTION
