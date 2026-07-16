@@ -1,0 +1,50 @@
+DATA_BLOCK "DB_GC"
+{ S7_Optimized_Access := 'TRUE' }
+VERSION : 0.1
+VAR
+    HallUpBtn : ARRAY[1..10] OF BOOL;
+    HallDownBtn : ARRAY[1..10] OF BOOL;
+
+    LiftCarCall : ARRAY[1..3, 1..10] OF BOOL;
+
+    LiftHallUp : ARRAY[1..3, 1..10] OF BOOL;
+    LiftHallDown : ARRAY[1..3, 1..10] OF BOOL;
+
+    LiftFloor : ARRAY[1..3] OF INT;
+    LiftDir : ARRAY[1..3] OF INT;
+    LiftRunning : ARRAY[1..3] OF BOOL;
+    LiftDoorOpen : ARRAY[1..3] OF BOOL;
+    LiftLoadPercent : ARRAY[1..3] OF INT;
+    LiftPower_kW : ARRAY[1..3] OF REAL;
+
+    LiftGroupEnable : ARRAY[1..3] OF BOOL;
+    LiftLocked : ARRAY[1..3] OF BOOL;
+    LiftDisabled : ARRAY[1..3] OF BOOL;
+
+    GroupMode : INT;
+
+    RideFinishPulse : ARRAY[1..3] OF BOOL;
+    RideTimeSample_s : ARRAY[1..3] OF REAL;
+
+    AssignedLiftUp : ARRAY[1..10] OF INT;
+    AssignedLiftDown : ARRAY[1..10] OF INT;
+
+    LiftTaskCount : ARRAY[1..3] OF INT;
+    AheadTaskCountOut : ARRAY[1..3] OF INT;
+
+    AvgWait_s : REAL;
+    CurrentAvgWait_s : REAL;
+    CurrentWaitingCount : INT;
+
+    LongWaitRatePercent : REAL;
+    AvgRideTime_s : REAL;
+
+    LiftEfficiencyPercent : ARRAY[1..3] OF REAL;
+    SystemEmptyRatePercent : REAL;
+
+    LiftEnergy_kWh : ARRAY[1..3] OF REAL;
+    SystemEnergy_kWh : REAL;
+END_VAR
+
+BEGIN
+END_DATA_BLOCK

@@ -1,0 +1,57 @@
+FUNCTION "FC_GC_IO_Map" : Void
+BEGIN
+    // ==================================================
+    // 1. 无效楼层保护
+    // ==================================================
+    "DB_GC".HallUpBtn[10] := FALSE;
+    "DB_GC".HallDownBtn[1] := FALSE;
+
+
+    // ==================================================
+    // 2. 暂时没有载客率和功率，就先给默认值
+    // ==================================================
+    "DB_GC".LiftLoadPercent[1] := 0;
+    "DB_GC".LiftLoadPercent[2] := 0;
+    "DB_GC".LiftLoadPercent[3] := 0;
+
+    "DB_GC".LiftPower_kW[1] := 0.0;
+    "DB_GC".LiftPower_kW[2] := 0.0;
+    "DB_GC".LiftPower_kW[3] := 0.0;
+
+
+    // ==================================================
+    // 3. 群控使能 / 锁梯 / 禁用
+    // 后面接 WINCC 时再改成 HMI 变量
+    // ==================================================
+    "DB_GC".LiftGroupEnable[1] := TRUE;
+    "DB_GC".LiftGroupEnable[2] := TRUE;
+    "DB_GC".LiftGroupEnable[3] := TRUE;
+
+    "DB_GC".LiftLocked[1] := FALSE;
+    "DB_GC".LiftLocked[2] := FALSE;
+    "DB_GC".LiftLocked[3] := FALSE;
+
+    "DB_GC".LiftDisabled[1] := FALSE;
+    "DB_GC".LiftDisabled[2] := FALSE;
+    "DB_GC".LiftDisabled[3] := FALSE;
+
+
+    // ==================================================
+    // 4. 群控模式
+    // 0普通，1上班高峰，2下班高峰，3午餐高峰，4三分区
+    // ==================================================
+    "DB_GC".GroupMode := 0;
+
+
+    // ==================================================
+    // 5. 乘梯时间统计，暂时不用
+    // ==================================================
+    "DB_GC".RideFinishPulse[1] := FALSE;
+    "DB_GC".RideFinishPulse[2] := FALSE;
+    "DB_GC".RideFinishPulse[3] := FALSE;
+
+    "DB_GC".RideTimeSample_s[1] := 0.0;
+    "DB_GC".RideTimeSample_s[2] := 0.0;
+    "DB_GC".RideTimeSample_s[3] := 0.0;
+
+END_FUNCTION
